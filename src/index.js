@@ -11,6 +11,7 @@ const ResponseError = require("./middlewares/response-error");
 
 app.listen(config.PORT, () => {
   logger.info(`Music app is running on port ${config.PORT}.`);
+  logger.info("Running server in mode: " + config.ENVIRONMENT);
 });
 
 app.use(helmet);
