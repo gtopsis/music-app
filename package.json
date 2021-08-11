@@ -4,7 +4,7 @@
   "description": "A fair music app for artists to manage their recordings and tracks",
   "main": "index.js",
   "scripts": {
-    "serve": "nodemon index.js",
+    "serve": "nodemon ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,7 +20,8 @@
   "homepage": "https://github.com/gtopsis/fair-music-app#readme",
   "devDependencies": {
     "eslint": "^7.32.0",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2"
   },
   "dependencies": {
     "cors": "^2.8.5",
