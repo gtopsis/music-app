@@ -7,6 +7,7 @@ let config = {
     FILENAME_COMBINED: process.env.LOGGER_FILENAME_COMBINED || "combined.log",
     MAXSIZE: process.env.LOGGER_MAXSIZE || 5242880,
     MAXFILES: process.env.LOGGER_MAXFILES || 7,
+    BODY_SIZE: process.env.BODY_SIZE || "20MB",
   },
 };
 
