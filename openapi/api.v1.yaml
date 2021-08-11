@@ -1,0 +1,52 @@
+openapi: 3.0.1
+
+info:
+  version: 1.0.0
+  title: Fair Music app API
+  description: Restful API for Fair Music App
+
+servers:
+  - url: "{protocol}://{host}:{port}{basePath}"
+    description:
+      Dev and Production API (e.g. )
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+        description: Protocol of the URL.
+      host:
+        enum:
+          - localhost
+          - ec2-34-244-123-127.eu-west-1.compute.amazonaws.com
+        default: localhost
+        description: Host of the URL.
+      port:
+        enum:
+          - ""
+          - "3000"
+          - "443"
+        default: "3000"
+        description: Port of the URL
+      basePath:
+        enum:
+          - ""
+          - "/"
+        default: "/"
+        description: Base path of URL.
+
+paths:
+
+  /v1/artists:
+    get:
+      $ref: paths/artists/retrieveArtists.v1.yaml
+    post:
+      $ref: paths/artists/createArtist.v1.yaml
+  /v1/artists/:id:
+    get:
+      $ref: paths/artists/retrieveArtist.v1.yaml
+    patch:
+      $ref: paths/artists/updateArtist.v1.yaml
+    delete:
+      $ref: paths/artists/deleteArtist.v1.yaml

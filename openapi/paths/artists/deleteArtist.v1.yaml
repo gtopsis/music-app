@@ -1,0 +1,22 @@
+summary: Retrieve all artists
+tags:
+  - Artists
+operationId: retrieveArtists
+x-eov-operation-handler: ArtistsController
+
+responses:
+  "200":
+    description: A list of artists
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: String
+  # "401":
+  #   $ref: "../../responses/UnauthorizedError.v21.yaml"
+  # default:
+  #   $ref: "../../schemas/Error.v21.yaml"
