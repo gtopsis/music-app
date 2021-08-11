@@ -4,6 +4,7 @@
   "description": "A fair music app for artists to manage their recordings and tracks",
   "main": "index.js",
   "scripts": {
+    "serve": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,7 +23,10 @@
     "nodemon": "^2.0.12"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "pg": "^8.7.1"
+    "helmet": "^4.6.0",
+    "pg": "^8.7.1",
+    "winston": "^3.3.3"
   }
 }
