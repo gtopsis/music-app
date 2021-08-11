@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const app = require("./app");
 const config = require("./config");
 const logger = require("./logger");
+const reqLogger = require("./middlewares/req-logger");
 
 app.listen(config.PORT, () => {
   logger.info(`Music app is running on port ${config.PORT}.`);
@@ -15,6 +16,9 @@ app.use(helmet);
 app.use(cors);
 app.use(express.json());
 app.use(bodyParser.json({limit: config.BODY_SIZE}));
+
+// custom middlewares
+app.use(reqLogger);
 
 process.on("uncaughtException", err => {
   logger.error("There was an uncaught error", err);
