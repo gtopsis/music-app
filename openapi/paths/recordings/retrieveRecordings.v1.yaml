@@ -16,7 +16,6 @@ responses:
             properties:
               name:
                 type: String
-  # "401":
-  #   $ref: "../../responses/UnauthorizedError.v21.yaml"
-  # default:
-  #   $ref: "../../schemas/Error.v21.yaml"
+  default:
+    $ref: "../../schemas/Error.v1.yaml"
+
