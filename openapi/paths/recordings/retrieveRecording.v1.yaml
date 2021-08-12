@@ -15,5 +15,9 @@ responses:
       application/json:
         schema:
           $ref: ../../schemas/Recording.v1.yaml
+
+  "404":
+    description: The specified resource was not found.
+
   default:
     $ref: "../../schemas/Error.v1.yaml"

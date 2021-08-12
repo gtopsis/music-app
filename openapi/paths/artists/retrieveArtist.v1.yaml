@@ -15,5 +15,8 @@ responses:
         schema:
           $ref: ../../schemas/Artist.v1.yaml
 
+  "404":
+    description: The specified resource was not found.
+
   default:
     $ref: "../../schemas/Error.v1.yaml"

@@ -8,3 +8,7 @@ properties:
     type: string
     minLength: 1
     example: best-artist
+
+required:
+  - title
+  - artist

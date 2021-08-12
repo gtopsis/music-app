@@ -98,7 +98,13 @@
                           }
                         }
                       }
-                    }
+                    },
+                    "required": [
+                      "name",
+                      "shortName",
+                      "gender",
+                      "area"
+                    ]
                   }
                 }
               }
@@ -160,7 +166,13 @@
                       }
                     }
                   }
-                }
+                },
+                "required": [
+                  "name",
+                  "shortName",
+                  "gender",
+                  "area"
+                ]
               }
             }
           }
@@ -209,7 +221,13 @@
                         }
                       }
                     }
-                  }
+                  },
+                  "required": [
+                    "name",
+                    "shortName",
+                    "gender",
+                    "area"
+                  ]
                 }
               }
             }
@@ -283,10 +301,19 @@
                         }
                       }
                     }
-                  }
+                  },
+                  "required": [
+                    "name",
+                    "shortName",
+                    "gender",
+                    "area"
+                  ]
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found."
           },
           "default": {
             "description": "Unexpected error"
@@ -399,10 +426,19 @@
                         }
                       }
                     }
-                  }
+                  },
+                  "required": [
+                    "name",
+                    "shortName",
+                    "gender",
+                    "area"
+                  ]
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found."
           },
           "default": {
             "description": "Unexpected error"
@@ -430,6 +466,9 @@
         "responses": {
           "204": {
             "description": "Successful deletion"
+          },
+          "404": {
+            "description": "The specified resource was not found."
           },
           "default": {
             "description": "Unexpected error"
@@ -523,7 +562,11 @@
                     "minLength": 1,
                     "example": "best-artist"
                   }
-                }
+                },
+                "required": [
+                  "title",
+                  "artist"
+                ]
               }
             }
           }
@@ -630,6 +673,9 @@
               }
             }
           },
+          "404": {
+            "description": "The specified resource was not found."
+          },
           "default": {
             "description": "Unexpected error"
           }
@@ -719,6 +765,9 @@
               }
             }
           },
+          "404": {
+            "description": "The specified resource was not found."
+          },
           "default": {
             "description": "Unexpected error"
           }
@@ -754,6 +803,9 @@
         "responses": {
           "204": {
             "description": "Successful deletion"
+          },
+          "404": {
+            "description": "The specified resource was not found."
           },
           "default": {
             "description": "Unexpected error"
@@ -956,6 +1008,9 @@
               }
             }
           },
+          "404": {
+            "description": "The specified resource was not found."
+          },
           "default": {
             "description": "Unexpected error"
           }
@@ -1044,6 +1099,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found."
           },
           "default": {
             "description": "Unexpected error"

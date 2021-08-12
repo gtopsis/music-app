@@ -27,3 +27,9 @@ properties:
       country:
         type: string
         example: Greece
+
+required:
+  - name
+  - shortName
+  - gender
+  - area

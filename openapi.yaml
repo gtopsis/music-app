@@ -74,6 +74,11 @@ paths:
                         country:
                           type: string
                           example: Greece
+                  required:
+                    - name
+                    - shortName
+                    - gender
+                    - area
         default:
           description: Unexpected error
     post:
@@ -117,6 +122,11 @@ paths:
                     country:
                       type: string
                       example: Greece
+              required:
+                - name
+                - shortName
+                - gender
+                - area
       responses:
         '201':
           description: New Artist
@@ -152,6 +162,11 @@ paths:
                       country:
                         type: string
                         example: Greece
+                required:
+                  - name
+                  - shortName
+                  - gender
+                  - area
         default:
           description: Unexpected error
   '/v1/artists/{artistId}':
@@ -203,6 +218,13 @@ paths:
                       country:
                         type: string
                         example: Greece
+                required:
+                  - name
+                  - shortName
+                  - gender
+                  - area
+        '404':
+          description: The specified resource was not found.
         default:
           description: Unexpected error
     patch:
@@ -283,6 +305,13 @@ paths:
                       country:
                         type: string
                         example: Greece
+                required:
+                  - name
+                  - shortName
+                  - gender
+                  - area
+        '404':
+          description: The specified resource was not found.
         default:
           description: Unexpected error
     delete:
@@ -301,6 +330,8 @@ paths:
       responses:
         '204':
           description: Successful deletion
+        '404':
+          description: The specified resource was not found.
         default:
           description: Unexpected error
   '/v1/artists/{artistId}/recordings':
@@ -367,6 +398,9 @@ paths:
                   type: string
                   minLength: 1
                   example: best-artist
+              required:
+                - title
+                - artist
       responses:
         '201':
           description: New Recording
@@ -437,6 +471,8 @@ paths:
                     type: array
                     items:
                       type: string
+        '404':
+          description: The specified resource was not found.
         default:
           description: Unexpected error
     patch:
@@ -498,6 +534,8 @@ paths:
                     type: array
                     items:
                       type: string
+        '404':
+          description: The specified resource was not found.
         default:
           description: Unexpected error
     delete:
@@ -522,6 +560,8 @@ paths:
       responses:
         '204':
           description: Successful deletion
+        '404':
+          description: The specified resource was not found.
         default:
           description: Unexpected error
   '/v1/recordings/{recordingId}/tracks':
@@ -661,6 +701,8 @@ paths:
                   duration:
                     type: string
                     example: female
+        '404':
+          description: The specified resource was not found.
         default:
           description: Unexpected error
     patch:
@@ -723,5 +765,7 @@ paths:
                   duration:
                     type: string
                     example: female
+        '404':
+          description: The specified resource was not found.
         default:
           description: Unexpected error
