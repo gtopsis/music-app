@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "serve": "nodemon ./src/index.js",
+    "openapi:validate": "swagger-cli validate ./openapi/api.v1.yaml",
+    "openapi:bundle": "swagger-cli bundle ./openapi/api.v1.yaml --outfile openapi.yaml --type yaml --dereference",
+    "openapi:publish": "npm run openapi:validate && npm run openapi:bundle && swagger-cli bundle ./openapi/api.v1.yaml --outfile ./public/openapi.json --type json --dereference",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,6 +31,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-openapi-validator": "^4.12.15",
     "helmet": "^4.6.0",
     "morgan": "^1.10.0",
     "pg": "^8.7.1",

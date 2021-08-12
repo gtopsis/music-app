@@ -1,0 +1,727 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0
+  title: Fair Music app API
+  description: Restful API for Fair Music App
+servers:
+  - url: '{protocol}://{host}:{port}{basePath}'
+    description: Dev and Production API (e.g. )
+    variables:
+      protocol:
+        enum:
+          - http
+        default: http
+        description: Protocol of the URL.
+      host:
+        enum:
+          - localhost
+        default: localhost
+        description: Host of the URL.
+      port:
+        enum:
+          - ''
+          - '3000'
+        default: '3000'
+        description: Port of the URL
+      basePath:
+        enum:
+          - ''
+          - /
+        default: /
+        description: Base path of URL.
+paths:
+  /v1/artists:
+    get:
+      summary: Retrieve all artists
+      tags:
+        - Artists
+      operationId: retrieveArtists
+      x-eov-operation-handler: ArtistsController
+      responses:
+        '200':
+          description: A list of artists
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  description: Artist data model
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      minLength: 1
+                      example: John
+                    shortName:
+                      type: string
+                      minLength: 1
+                      example: best-artist
+                    gender:
+                      type: string
+                      example: woman
+                    area:
+                      type: object
+                      properties:
+                        address:
+                          type: string
+                          example: Minoos 12
+                        zip:
+                          type: string
+                          example: 71000
+                        city:
+                          type: string
+                          example: Heraklion
+                        country:
+                          type: string
+                          example: Greece
+        default:
+          description: Unexpected error
+    post:
+      summary: Create an Artist
+      tags:
+        - Artists
+      operationId: createArtist
+      x-eov-operation-handler: ArtistsController
+      requestBody:
+        description: Data of new Artist
+        required: true
+        content:
+          application/json:
+            schema:
+              description: Artist data model
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  example: John
+                shortName:
+                  type: string
+                  minLength: 1
+                  example: best-artist
+                gender:
+                  type: string
+                  example: woman
+                area:
+                  type: object
+                  properties:
+                    address:
+                      type: string
+                      example: Minoos 12
+                    zip:
+                      type: string
+                      example: 71000
+                    city:
+                      type: string
+                      example: Heraklion
+                    country:
+                      type: string
+                      example: Greece
+      responses:
+        '201':
+          description: New Artist
+          content:
+            application/json:
+              schema:
+                description: Artist data model
+                type: object
+                properties:
+                  name:
+                    type: string
+                    minLength: 1
+                    example: John
+                  shortName:
+                    type: string
+                    minLength: 1
+                    example: best-artist
+                  gender:
+                    type: string
+                    example: woman
+                  area:
+                    type: object
+                    properties:
+                      address:
+                        type: string
+                        example: Minoos 12
+                      zip:
+                        type: string
+                        example: 71000
+                      city:
+                        type: string
+                        example: Heraklion
+                      country:
+                        type: string
+                        example: Greece
+        default:
+          description: Unexpected error
+  '/v1/artists/{artistId}':
+    get:
+      summary: Retrieve all artists
+      tags:
+        - Artists
+      operationId: retrieveArtist
+      x-eov-operation-handler: ArtistsController
+      parameters:
+        - in: path
+          name: artistId
+          description: Artist id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: An Artist
+          content:
+            application/json:
+              schema:
+                description: Artist data model
+                type: object
+                properties:
+                  name:
+                    type: string
+                    minLength: 1
+                    example: John
+                  shortName:
+                    type: string
+                    minLength: 1
+                    example: best-artist
+                  gender:
+                    type: string
+                    example: woman
+                  area:
+                    type: object
+                    properties:
+                      address:
+                        type: string
+                        example: Minoos 12
+                      zip:
+                        type: string
+                        example: 71000
+                      city:
+                        type: string
+                        example: Heraklion
+                      country:
+                        type: string
+                        example: Greece
+        default:
+          description: Unexpected error
+    patch:
+      summary: Update an Artist
+      tags:
+        - Artists
+      operationId: updateArtist
+      x-eov-operation-handler: ArtistsController
+      parameters:
+        - in: path
+          name: artistId
+          description: Artist id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Data of Artist to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                shortName:
+                  type: string
+                gender:
+                  type: string
+                  example: woman
+                area:
+                  type: object
+                  properties:
+                    address:
+                      type: string
+                      example: Minoos 12
+                    zip:
+                      type: string
+                      example: 71000
+                    city:
+                      type: string
+                      example: Heraklion
+                    country:
+                      type: string
+                      example: Greece
+      responses:
+        '200':
+          description: New data of an Artist
+          content:
+            application/json:
+              schema:
+                description: Artist data model
+                type: object
+                properties:
+                  name:
+                    type: string
+                    minLength: 1
+                    example: John
+                  shortName:
+                    type: string
+                    minLength: 1
+                    example: best-artist
+                  gender:
+                    type: string
+                    example: woman
+                  area:
+                    type: object
+                    properties:
+                      address:
+                        type: string
+                        example: Minoos 12
+                      zip:
+                        type: string
+                        example: 71000
+                      city:
+                        type: string
+                        example: Heraklion
+                      country:
+                        type: string
+                        example: Greece
+        default:
+          description: Unexpected error
+    delete:
+      summary: Delete an Artist
+      tags:
+        - Artists
+      operationId: deletertists
+      x-eov-operation-handler: ArtistsController
+      parameters:
+        - in: path
+          name: artistId
+          description: Artist id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Successful deletion
+        default:
+          description: Unexpected error
+  '/v1/artists/{artistId}/recordings':
+    get:
+      summary: Retrieve all Recordings
+      tags:
+        - Recordings
+      operationId: retrieveRecordings
+      x-eov-operation-handler: RecordingsController
+      responses:
+        '200':
+          description: A list of Recordings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  description: Recording data model
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      minLength: 1
+                      example: John
+                    artist:
+                      type: string
+                      minLength: 1
+                      example: best-artist
+                    duration:
+                      type: string
+                      example: '12:20'
+                    tracks:
+                      type: array
+                      items:
+                        type: string
+        default:
+          description: Unexpected error
+    post:
+      summary: Create a Recording
+      tags:
+        - Recordings
+      operationId: createRecording
+      x-eov-operation-handler: RecordingsController
+      parameters:
+        - in: path
+          name: artistId
+          description: Artist id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Data of new Artist
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  minLength: 1
+                  example: Album 1
+                artist:
+                  type: string
+                  minLength: 1
+                  example: best-artist
+      responses:
+        '201':
+          description: New Recording
+          content:
+            application/json:
+              schema:
+                description: Recording data model
+                type: object
+                properties:
+                  title:
+                    type: string
+                    minLength: 1
+                    example: John
+                  artist:
+                    type: string
+                    minLength: 1
+                    example: best-artist
+                  duration:
+                    type: string
+                    example: '12:20'
+                  tracks:
+                    type: array
+                    items:
+                      type: string
+        default:
+          description: Unexpected error
+  '/v1/artists/{artistId}/recordings/{recordingId}':
+    get:
+      summary: Retrieve a Recording
+      tags:
+        - Recordings
+      operationId: retrieveRecording
+      x-eov-operation-handler: RecordingsController
+      parameters:
+        - in: path
+          name: artistId
+          description: Artist id
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: recordingId
+          description: Recording id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A Recording
+          content:
+            application/json:
+              schema:
+                description: Recording data model
+                type: object
+                properties:
+                  title:
+                    type: string
+                    minLength: 1
+                    example: John
+                  artist:
+                    type: string
+                    minLength: 1
+                    example: best-artist
+                  duration:
+                    type: string
+                    example: '12:20'
+                  tracks:
+                    type: array
+                    items:
+                      type: string
+        default:
+          description: Unexpected error
+    patch:
+      summary: Update a Recording
+      tags:
+        - Recordings
+      operationId: updateRecording
+      x-eov-operation-handler: RecordingsController
+      parameters:
+        - in: path
+          name: artistId
+          description: Artist id
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: recordingId
+          description: Recording id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Data of Recording to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  minLength: 1
+                  example: Album 1
+                artist:
+                  type: string
+                  minLength: 1
+                  example: best-artist
+      responses:
+        '200':
+          description: New data of a Recording
+          content:
+            application/json:
+              schema:
+                description: Recording data model
+                type: object
+                properties:
+                  title:
+                    type: string
+                    minLength: 1
+                    example: John
+                  artist:
+                    type: string
+                    minLength: 1
+                    example: best-artist
+                  duration:
+                    type: string
+                    example: '12:20'
+                  tracks:
+                    type: array
+                    items:
+                      type: string
+        default:
+          description: Unexpected error
+    delete:
+      summary: Delete a Recording
+      tags:
+        - Recordings
+      operationId: deleteRecording
+      x-eov-operation-handler: RecordingsController
+      parameters:
+        - in: path
+          name: artistId
+          description: Artist id
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: recordingId
+          description: Recording id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Successful deletion
+        default:
+          description: Unexpected error
+  '/v1/recordings/{recordingId}/tracks':
+    get:
+      summary: Retrieve all Tracks
+      tags:
+        - Tracks
+      operationId: retrieveTracks
+      x-eov-operation-handler: TracksController
+      parameters:
+        - in: path
+          name: recordingId
+          description: Recording id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of Tracks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  description: Track data model
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      minLength: 1
+                      example: John
+                    position:
+                      type: integer
+                      format: int32
+                      minimum: 0
+                      example: 0
+                    duration:
+                      type: string
+                      example: female
+        default:
+          description: Unexpected error
+    post:
+      summary: Create a Track
+      tags:
+        - Tracks
+      operationId: retrieveTracks
+      x-eov-operation-handler: TracksController
+      parameters:
+        - in: path
+          name: recordingId
+          description: Recording id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Data of new Track
+        required: true
+        content:
+          application/json:
+            schema:
+              description: Track data model
+              type: object
+              properties:
+                title:
+                  type: string
+                  minLength: 1
+                  example: John
+                position:
+                  type: integer
+                  format: int32
+                  minimum: 0
+                  example: 0
+                duration:
+                  type: string
+                  example: female
+      responses:
+        '201':
+          description: New Recording
+          content:
+            application/json:
+              schema:
+                description: Track data model
+                type: object
+                properties:
+                  title:
+                    type: string
+                    minLength: 1
+                    example: John
+                  position:
+                    type: integer
+                    format: int32
+                    minimum: 0
+                    example: 0
+                  duration:
+                    type: string
+                    example: female
+        default:
+          description: Unexpected error
+  '/v1/recordings/{recordingId}/tracks/{trackId}':
+    get:
+      summary: Retrieve a Track
+      tags:
+        - Tracks
+      operationId: retrieveTrack
+      x-eov-operation-handler: TracksController
+      parameters:
+        - in: path
+          name: recordingId
+          description: Recording id
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: trackId
+          description: Track id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A Track
+          content:
+            application/json:
+              schema:
+                description: Track data model
+                type: object
+                properties:
+                  title:
+                    type: string
+                    minLength: 1
+                    example: John
+                  position:
+                    type: integer
+                    format: int32
+                    minimum: 0
+                    example: 0
+                  duration:
+                    type: string
+                    example: female
+        default:
+          description: Unexpected error
+    patch:
+      summary: Update a Track
+      tags:
+        - Tracks
+      operationId: updateTrack
+      x-eov-operation-handler: TracksController
+      parameters:
+        - in: path
+          name: recordingId
+          description: Recording id
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: trackId
+          description: Track id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Data of Track to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  minLength: 1
+                  example: John
+                position:
+                  type: integer
+                  format: int32
+                  minimum: 0
+                  example: 0
+                duration:
+                  type: string
+                  example: '05:15'
+      responses:
+        '200':
+          description: New data of a Track
+          content:
+            application/json:
+              schema:
+                description: Track data model
+                type: object
+                properties:
+                  title:
+                    type: string
+                    minLength: 1
+                    example: John
+                  position:
+                    type: integer
+                    format: int32
+                    minimum: 0
+                    example: 0
+                  duration:
+                    type: string
+                    example: female
+        default:
+          description: Unexpected error

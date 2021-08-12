@@ -3,6 +3,8 @@ const helmet = require("helmet");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const path = require("path");
+const OpenApiValidator = require("express-openapi-validator");
 
 const app = require("./app");
 const config = require("./config");
@@ -20,6 +22,15 @@ app.use(express.json());
 app.use(bodyParser.json({limit: config.BODY_SIZE}));
 app.use(morgan("dev"));
 
+// OpenAPI - express validator
+app.use(
+  OpenApiValidator.middleware({
+    apiSpec: "./openapi.yaml",
+    validateRequests: true, // (default)
+    validateResponses: false, // false by default
+    operationHandlers: path.join(__dirname, "/controllers"),
+  })
+);
 // routes
 
 // error response
