@@ -7,17 +7,21 @@ x-eov-operation-handler: ArtistsController
 parameters:
   - $ref: ../../parameters/path/artistId.v1.yaml
 
+requestBody:
+  description: Data of Artist to be updated
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../requestBodies/artistUpdateBody.v1.yaml"
+
 responses:
   "200":
     description: New data of an Artist
     content:
       application/json:
         schema:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: String
+          $ref: "../../schemas/Artist.v1.yaml"
+
   default:
     $ref: "../../schemas/Error.v1.yaml"

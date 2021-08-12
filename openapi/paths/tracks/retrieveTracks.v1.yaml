@@ -4,6 +4,9 @@ tags:
 operationId: retrieveTracks
 x-eov-operation-handler: TracksController
 
+parameters:
+  - $ref: ../../parameters/path/recordingId.v1.yaml
+
 responses:
   "200":
     description: A list of Tracks
@@ -12,7 +15,7 @@ responses:
         schema:
           type: array
           items:
-            - $ref: ../../schemas/Track.v1.yaml
+            $ref: ../../schemas/Track.v1.yaml
 
   default:
     $ref: "../../schemas/Error.v1.yaml"

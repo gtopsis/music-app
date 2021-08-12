@@ -12,7 +12,7 @@ responses:
         schema:
           type: array
           items:
-            - $ref: ../../schemas/Recording.v1.yaml
+            $ref: ../../schemas/Recording.v1.yaml
 
   default:
     $ref: "../../schemas/Error.v1.yaml"

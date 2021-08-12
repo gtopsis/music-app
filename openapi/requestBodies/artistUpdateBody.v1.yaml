@@ -1,14 +1,9 @@
-description: Artist data model
 type: object
 properties:
   name:
     type: string
-    minLength: 1
-    example: John
   shortName:
     type: string
-    minLength: 1
-    example: best-artist
   gender:
     type: string
     example: woman

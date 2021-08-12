@@ -4,8 +4,8 @@ tags:
 operationId: retrieveRecording
 x-eov-operation-handler: RecordingsController
 
-
 parameters:
+  - $ref: ../../parameters/path/artistId.v1.yaml
   - $ref: ../../parameters/path/recordingId.v1.yaml
 
 responses:
@@ -22,4 +22,3 @@ responses:
                 type: String
   default:
     $ref: "../../schemas/Error.v1.yaml"
-
