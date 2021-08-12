@@ -4,18 +4,14 @@ tags:
 operationId: deleteRecording
 x-eov-operation-handler: RecordingsController
 
+
+parameters:
+  - $ref: ../../parameters/path/recordingId.v1.yaml
+
+
 responses:
-  "200":
-    description: A list of artists
-    content:
-      application/json:
-        schema:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: String
+  "204":
+    description: Successful deletion
   default:
     $ref: "../../schemas/Error.v1.yaml"
 

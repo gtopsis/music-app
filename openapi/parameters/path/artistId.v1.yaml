@@ -1,0 +1,6 @@
+in: path
+name: artistId
+description: Artist id
+required: true
+schema:
+  type: string

@@ -1,0 +1,6 @@
+in: path
+name: recordingId
+description: Recording id
+required: true
+schema:
+  type: string

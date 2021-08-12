@@ -4,9 +4,12 @@ tags:
 operationId: updateRecording
 x-eov-operation-handler: RecordingsController
 
+parameters:
+  - $ref: ../../parameters/path/recordingId.v1.yaml
+
 responses:
   "200":
-    description: A list of artists
+    description: New data of a Recording
     content:
       application/json:
         schema:

@@ -1,12 +1,17 @@
 summary: Retrieve a Track
 tags:
   - Tracks
-operationId: retrieveTracks
+operationId: retrieveTrack
 x-eov-operation-handler: TracksController
+
+
+parameters:
+  - $ref: ../../parameters/path/trackId.v1.yaml
+
 
 responses:
   "200":
-    description: A list of artists
+    description: A Track
     content:
       application/json:
         schema:

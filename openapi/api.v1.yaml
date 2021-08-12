@@ -13,20 +13,17 @@ servers:
       protocol:
         enum:
           - http
-          - https
-        default: https
+        default: http
         description: Protocol of the URL.
       host:
         enum:
           - localhost
-          - ec2-34-244-123-127.eu-west-1.compute.amazonaws.com
         default: localhost
         description: Host of the URL.
       port:
         enum:
           - ""
           - "3000"
-          - "443"
         default: "3000"
         description: Port of the URL
       basePath:
@@ -69,9 +66,11 @@ paths:
   /v1/recordings/{recordingId}/tracks:
     get:
       $ref: paths/tracks/retrieveTracks.v1.yaml
+    post:
+      $ref: paths/tracks/createTrack.v1.yaml
 
   /v1/recordings/{recordingId}/tracks/{trackId}:
-    post:
+    get:
       $ref: paths/tracks/retrieveTrack.v1.yaml
     patch:
       $ref: paths/tracks/updateTrack.v1.yaml

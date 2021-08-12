@@ -1,12 +1,12 @@
-summary: Retrieve all artists
+summary: Create an Artist
 tags:
   - Artists
-operationId: retrieveArtists
+operationId: createArtist
 x-eov-operation-handler: ArtistsController
 
 responses:
   "200":
-    description: A list of artists
+    description: Data of new Artist
     content:
       application/json:
         schema:

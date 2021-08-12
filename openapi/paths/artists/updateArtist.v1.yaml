@@ -4,9 +4,12 @@ tags:
 operationId: retrieveArtists
 x-eov-operation-handler: ArtistsController
 
+parameters:
+  - $ref: ../../parameters/path/artistId.v1.yaml
+
 responses:
   "200":
-    description: A list of artists
+    description: New data of an Artist
     content:
       application/json:
         schema:

@@ -6,7 +6,7 @@ x-eov-operation-handler: TracksController
 
 responses:
   "200":
-    description: A list of artists
+    description: Data of new Track
     content:
       application/json:
         schema:

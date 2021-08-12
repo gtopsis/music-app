@@ -6,7 +6,7 @@ x-eov-operation-handler: RecordingsController
 
 responses:
   "200":
-    description: A list of artists
+    description: A list of Recordings
     content:
       application/json:
         schema:
