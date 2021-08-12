@@ -12,9 +12,13 @@ properties:
     properties:
       address:
         type: string
+        example: Minoos 12
       zip:
         type: string
+        example: 71000
       city:
         type: string
+        example: Heraklion
       country:
         type: string
+        example: Greece

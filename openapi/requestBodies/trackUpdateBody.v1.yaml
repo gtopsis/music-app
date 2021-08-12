@@ -5,9 +5,10 @@ properties:
     minLength: 1
     example: John
   position:
-    type: number
-    minLength: 1
-    example: best-artist
+    type: integer
+    format: int32
+    minimum: 0
+    example: 0
   duration:
     type: string
-    example: woman
+    example: "05:15"
