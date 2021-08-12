@@ -37,16 +37,41 @@ servers:
         description: Base path of URL.
 
 paths:
-
+# ARTISTS
   /v1/artists:
     get:
       $ref: paths/artists/retrieveArtists.v1.yaml
     post:
       $ref: paths/artists/createArtist.v1.yaml
-  /v1/artists/:id:
+  /v1/artists/{artistId}:
     get:
       $ref: paths/artists/retrieveArtist.v1.yaml
     patch:
       $ref: paths/artists/updateArtist.v1.yaml
     delete:
       $ref: paths/artists/deleteArtist.v1.yaml
+
+# RECORDINGS
+  /v1/artists/{artistId}/recordings:
+    get:
+      $ref: paths/recordings/retrieveRecordings.v1.yaml
+    post:
+      $ref: paths/recordings/createRecording.v1.yaml
+  /v1/artists/{artistId}/recordings/{recordingId}:
+    get:
+      $ref: paths/recordings/retrieveRecording.v1.yaml
+    patch:
+      $ref: paths/recordings/updateRecording.v1.yaml
+    delete:
+      $ref: paths/recordings/deleteRecording.v1.yaml
+
+# TRACKS
+  /v1/recordings/{recordingId}/tracks:
+    get:
+      $ref: paths/tracks/retrieveTracks.v1.yaml
+
+  /v1/recordings/{recordingId}/tracks/{trackId}:
+    post:
+      $ref: paths/tracks/retrieveTrack.v1.yaml
+    patch:
+      $ref: paths/tracks/updateTrack.v1.yaml

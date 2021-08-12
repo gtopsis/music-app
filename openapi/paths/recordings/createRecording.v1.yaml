@@ -1,8 +1,8 @@
-summary: Retrieve all artists
+summary: Create a Recording
 tags:
-  - Artists
-operationId: retrieveArtist
-x-eov-operation-handler: ArtistsController
+  - Recordings
+operationId: createRecording
+x-eov-operation-handler: RecordingsController
 
 responses:
   "200":

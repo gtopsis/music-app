@@ -1,8 +1,8 @@
-summary: Retrieve all artists
+summary: Update a Track
 tags:
-  - Artists
-operationId: retrieveArtist
-x-eov-operation-handler: ArtistsController
+  - Tracks
+operationId: retrieveTrack
+x-eov-operation-handler: TracksController
 
 responses:
   "200":

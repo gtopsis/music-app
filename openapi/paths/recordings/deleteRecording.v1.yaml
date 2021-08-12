@@ -1,8 +1,8 @@
-summary: Retrieve all artists
+summary: Delete a Recording
 tags:
-  - Artists
-operationId: retrieveArtist
-x-eov-operation-handler: ArtistsController
+  - Recordings
+operationId: deleteRecording
+x-eov-operation-handler: RecordingsController
 
 responses:
   "200":
