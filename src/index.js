@@ -16,11 +16,14 @@ app.listen(config.PORT, () => {
   logger.info("Running server in mode: " + config.ENVIRONMENT);
 });
 
-app.use(helmet);
-app.use(cors);
+app.use(helmet());
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json({limit: config.BODY_SIZE}));
 app.use(morgan("dev"));
+
+//OpenAPI file
+app.get("/api-doc", (req, res) => res.sendFile(path.join(__dirname, "../public/openapi.json")));
 
 // OpenAPI - express validator
 app.use(
@@ -28,10 +31,11 @@ app.use(
     apiSpec: "./openapi.yaml",
     validateRequests: true, // (default)
     validateResponses: false, // false by default
-    operationHandlers: path.join(__dirname, "/controllers"),
+    validateFormats: "full",
+    // formats: openapiFormats.formats,
+    operationHandlers: path.join(__dirname, "controllers"),
   })
 );
-// routes
 
 // error response
 app.use(ResponseError);
