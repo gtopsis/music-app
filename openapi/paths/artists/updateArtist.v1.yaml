@@ -1,7 +1,7 @@
-summary: Retrieve all artists
+summary: Update an Artist
 tags:
   - Artists
-operationId: retrieveArtists
+operationId: updateArtist
 x-eov-operation-handler: ArtistsController
 
 parameters:
@@ -21,4 +21,3 @@ responses:
                 type: String
   default:
     $ref: "../../schemas/Error.v1.yaml"
-

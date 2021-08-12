@@ -1,7 +1,7 @@
-summary: Retrieve all artists
+summary: Delete an Artist
 tags:
   - Artists
-operationId: retrieveArtists
+operationId: deletertists
 x-eov-operation-handler: ArtistsController
 
 parameters:
@@ -13,4 +13,3 @@ responses:
 
   default:
     $ref: "../../schemas/Error.v1.yaml"
-
