@@ -9,6 +9,7 @@ const OpenApiValidator = require("express-openapi-validator");
 const app = require("./app");
 const config = require("./config");
 const logger = require("./logger");
+const ResponseSuccess = require("./middlewares/response-success");
 const ResponseError = require("./middlewares/response-error");
 
 app.listen(config.PORT, () => {
@@ -38,6 +39,7 @@ app.use(
 );
 
 // error response
+app.use(ResponseSuccess);
 app.use(ResponseError);
 
 process.on("uncaughtException", err => {
