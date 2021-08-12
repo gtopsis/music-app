@@ -4,6 +4,14 @@ tags:
 operationId: createArtist
 x-eov-operation-handler: ArtistsController
 
+requestBody:
+  description: Data of new Artist
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/Artist.v1.yaml"
+
 responses:
   "201":
     description: New Artist

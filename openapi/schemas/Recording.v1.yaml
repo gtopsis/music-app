@@ -14,5 +14,5 @@ properties:
     example: woman
   tracks:
     type: array
-    itams:
+    items:
       type: string

@@ -4,6 +4,17 @@ tags:
 operationId: createRecording
 x-eov-operation-handler: RecordingsController
 
+parameters:
+  - $ref: ../../parameters/path/artistId.v1.yaml
+
+requestBody:
+  description: Data of new Artist
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/Recording.v1.yaml"
+
 responses:
   "201":
     description: New Recording
