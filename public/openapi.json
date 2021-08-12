@@ -450,7 +450,7 @@
         "tags": [
           "Artists"
         ],
-        "operationId": "deletertists",
+        "operationId": "deleteArtist",
         "x-eov-operation-handler": "ArtistsController",
         "parameters": [
           {

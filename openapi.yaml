@@ -318,7 +318,7 @@ paths:
       summary: Delete an Artist
       tags:
         - Artists
-      operationId: deletertists
+      operationId: deleteArtist
       x-eov-operation-handler: ArtistsController
       parameters:
         - in: path
