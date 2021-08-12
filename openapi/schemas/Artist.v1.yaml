@@ -1,0 +1,25 @@
+description: Artist data model
+type: object
+properties:
+  name:
+    type: string
+    minLength: 1
+    example: John
+  shrortName:
+    type: string
+    minLength: 1
+    example: best-artist
+  gender:
+    type: string
+    example: woman
+  area:
+    type: object
+    properties:
+      address:
+        type: string
+      zip:
+        type: string
+      city:
+        type: string
+      country:
+        type: string

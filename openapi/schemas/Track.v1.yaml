@@ -1,0 +1,14 @@
+description: Track data model
+type: object
+properties:
+  title:
+    type: string
+    minLength: 1
+    example: John
+  position:
+    type: number
+    minLength: 1
+    example: best-artist
+  duration:
+    type: string
+    example: woman
