@@ -1,4 +1,4 @@
-description: Artist data model
+description: Recording data model
 type: object
 properties:
   title:

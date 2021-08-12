@@ -5,17 +5,11 @@ operationId: retrieveTracks
 x-eov-operation-handler: TracksController
 
 responses:
-  "200":
-    description: Data of new Track
+  "201":
+    description: New Recording
     content:
       application/json:
         schema:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: String
+          $ref: ../../schemas/Track.v1.yaml
   default:
     $ref: "../../schemas/Error.v1.yaml"
-

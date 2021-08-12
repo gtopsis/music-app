@@ -5,17 +5,11 @@ operationId: createRecording
 x-eov-operation-handler: RecordingsController
 
 responses:
-  "200":
-    description: A list of Recordings
+  "201":
+    description: New Recording
     content:
       application/json:
         schema:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: String
+          $ref: ../../schemas/Recording.v1.yaml
   default:
     $ref: "../../schemas/Error.v1.yaml"
-

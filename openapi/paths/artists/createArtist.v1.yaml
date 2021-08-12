@@ -5,16 +5,11 @@ operationId: createArtist
 x-eov-operation-handler: ArtistsController
 
 responses:
-  "200":
-    description: Data of new Artist
+  "201":
+    description: New Artist
     content:
       application/json:
         schema:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: String
+          $ref: ../../schemas/Artist.v1.yaml
   default:
     $ref: "../../schemas/Error.v1.yaml"
