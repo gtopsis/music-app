@@ -3,6 +3,11 @@ const Artist = require("./Artist");
 const Track = require("./Track");
 
 const Recording = Sequelize.define("recording", {
+  uuid: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
+    primaryKey: true,
+  },
   title: Sequelize.STRING,
   duration: Sequelize.STRING,
 });
