@@ -8,7 +8,7 @@
     "openapi:validate": "swagger-cli validate ./openapi/api.v1.yaml",
     "openapi:bundle": "swagger-cli bundle ./openapi/api.v1.yaml --outfile openapi.yaml --type yaml --dereference",
     "openapi:publish": "npm run openapi:validate && npm run openapi:bundle && swagger-cli bundle ./openapi/api.v1.yaml --outfile ./public/openapi.json --type json --dereference",
-    "test:api-unit": "jest",
+    "test:api-unit": "cross-env NODE_ENV=test jest --runInBand",
     "test:unit": "jest"
   },
   "repository": {
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/gtopsis/fair-music-app#readme",
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "jest": "^27.0.6",
     "nodemon": "^2.0.12",
