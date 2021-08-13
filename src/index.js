@@ -9,13 +9,22 @@ const OpenApiValidator = require("express-openapi-validator");
 const app = require("./app");
 const config = require("./config");
 const logger = require("./logger");
+const dbService = require("./services/dbService");
 const ResponseSuccess = require("./middlewares/response-success");
 const ResponseError = require("./middlewares/response-error");
 
-app.listen(config.PORT, () => {
-  logger.info(`Music app is running on port ${config.PORT}.`);
-  logger.info("Running server in mode: " + config.ENVIRONMENT);
-});
+dbService.database
+  .sync()
+  .then(() => {
+    logger.info("Connection has been established successfully.");
+    app.listen(config.PORT, () => {
+      logger.info(`Server is running on port ${config.PORT}.`);
+      logger.info("Running server in mode: " + config.ENVIRONMENT);
+    });
+  })
+  .catch(error => {
+    logger.error("Unable to connect to the database:", error);
+  });
 
 app.use(helmet());
 app.use(cors());
