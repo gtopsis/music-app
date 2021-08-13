@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+const Duration = require("./Duration");
 
 const Track = Sequelize.define("track", {
   uuid: {
@@ -8,7 +9,7 @@ const Track = Sequelize.define("track", {
   },
   title: Sequelize.STRING,
   position: Sequelize.INTEGER,
-  duration: Sequelize.STRING,
 });
 
+Track.hasOne(Duration, {as: "duration"});
 module.exports = Track;

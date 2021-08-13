@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+const Area = require("./Area");
 
 const Artist = Sequelize.define("artist", {
   uuid: {
@@ -9,7 +10,8 @@ const Artist = Sequelize.define("artist", {
   name: Sequelize.STRING,
   shortName: {type: Sequelize.STRING, unique: true},
   gender: Sequelize.STRING,
-  area: Sequelize.STRING,
 });
+
+Artist.hasOne(Area, {as: "area"});
 
 module.exports = Artist;
