@@ -8,7 +8,8 @@
     "openapi:validate": "swagger-cli validate ./openapi/api.v1.yaml",
     "openapi:bundle": "swagger-cli bundle ./openapi/api.v1.yaml --outfile openapi.yaml --type yaml --dereference",
     "openapi:publish": "npm run openapi:validate && npm run openapi:bundle && swagger-cli bundle ./openapi/api.v1.yaml --outfile ./public/openapi.json --type json --dereference",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:api-unit": "jest",
+    "test:unit": "jest"
   },
   "repository": {
     "type": "git",
