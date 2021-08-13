@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const config = require("../config");
+const logger = require("../logger");
 
 const database = new Sequelize({
   username: config.DB.USERNAME,
@@ -7,6 +8,7 @@ const database = new Sequelize({
   database: config.DB.DB_NAME,
   dialect: "postgres",
   operatorsAliases: Sequelize.Op,
+  logging: msg => logger.debug(msg),
 });
 
 const init = () => {};
