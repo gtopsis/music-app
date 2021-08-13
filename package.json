@@ -23,8 +23,10 @@
   "homepage": "https://github.com/gtopsis/fair-music-app#readme",
   "devDependencies": {
     "eslint": "^7.32.0",
+    "jest": "^27.0.6",
     "nodemon": "^2.0.12",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "supertest": "^6.1.5"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -37,5 +39,11 @@
     "pg": "^8.7.1",
     "sequelize": "^6.6.5",
     "winston": "^3.3.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
