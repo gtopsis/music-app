@@ -1,6 +1,9 @@
 const request = require("supertest");
 const app = require("../src/app");
 
+const testSetupService = require("./testSetupService");
+testSetupService.setUpTestEnv(app);
+
 describe("POST /v1/artists", () => {
   it("Create an artist successfully", async () => {
     const response = await request(app)
