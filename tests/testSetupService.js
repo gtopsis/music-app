@@ -11,7 +11,7 @@ module.exports = {
     beforeAll(async () => {
       process.env.NODE_ENV = "test";
 
-      dbService.init();
+      dbService.getDBConnection();
     });
 
     // // Cleans up database between each test

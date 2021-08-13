@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
+const dbService = require("../services/dbService");
 
-const Area = Sequelize.define("area", {
+const Area = dbService.getDBConnection().define("area", {
   uuid: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,

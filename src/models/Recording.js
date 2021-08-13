@@ -1,9 +1,11 @@
 const Sequelize = require("sequelize");
+const dbService = require("../services/dbService");
+
 const Artist = require("./Artist");
 const Track = require("./Track");
 const Duration = require("./Duration");
 
-const Recording = Sequelize.define("recording", {
+const Recording = dbService.getDBConnection().define("recording", {
   uuid: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,

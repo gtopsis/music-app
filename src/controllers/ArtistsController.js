@@ -1,8 +1,10 @@
 const ArtistsService = require("../services/ArtistsService");
+const Artist = require("../models/Artist");
 
 const retrieveArtists = async (req, res, next) => {
   try {
     // validate params and body
+
     res.locals.status = 200;
     next();
   } catch (error) {
@@ -13,6 +15,12 @@ const retrieveArtists = async (req, res, next) => {
 const createArtist = async (req, res, next) => {
   try {
     // validate params and body
+    const {name, shortName, gender, area} = req.body;
+    const foundArtist = await Artist.findOne({
+      where: {
+        shortName,
+      },
+    });
 
     next();
   } catch (error) {

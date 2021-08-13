@@ -1,7 +1,9 @@
 const Sequelize = require("sequelize");
+const dbService = require("../services/dbService");
+
 const Duration = require("./Duration");
 
-const Track = Sequelize.define("track", {
+const Track = dbService.getDBConnection().define("track", {
   uuid: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,

@@ -1,7 +1,8 @@
 const Sequelize = require("sequelize");
+const dbService = require("../services/dbService");
 const Area = require("./Area");
 
-const Artist = Sequelize.define("artist", {
+const Artist = dbService.getDBConnection().define("artist", {
   uuid: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,

@@ -14,7 +14,7 @@ const ResponseSuccess = require("./middlewares/response-success");
 const ResponseError = require("./middlewares/response-error");
 
 dbService
-  .init()
+  .getDBConnection()
   .sync()
   .then(() => {
     logger.info("Connection has been established successfully.");
