@@ -2,6 +2,8 @@ let dbConfig = {
   DB: {
     USERNAME: process.env.DB_USERNAME || "fairlo",
     PASSWORD: process.env.DB_PASSWORD || "fairlo",
+    HOST: process.env.DB_HOST || "localhost",
+    PORT: process.env.DB_PORT || 5432,
   },
 };
 
