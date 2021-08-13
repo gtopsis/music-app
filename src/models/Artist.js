@@ -7,7 +7,7 @@ const Artist = Sequelize.define("artist", {
     primaryKey: true,
   },
   name: Sequelize.STRING,
-  shortName: Sequelize.STRING,
+  shortName: {type: Sequelize.STRING, unique: true},
   gender: Sequelize.STRING,
   area: Sequelize.STRING,
 });
