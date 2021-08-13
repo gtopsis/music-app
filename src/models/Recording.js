@@ -9,7 +9,7 @@ const Recording = Sequelize.define("recording", {
     defaultValue: Sequelize.UUIDV4,
     primaryKey: true,
   },
-  title: Sequelize.STRING,
+  title: {type: Sequelize.STRING, allowNull: false},
 });
 
 // Model associations

@@ -7,8 +7,8 @@ const Track = Sequelize.define("track", {
     defaultValue: Sequelize.UUIDV4,
     primaryKey: true,
   },
-  title: Sequelize.STRING,
-  position: Sequelize.INTEGER,
+  title: {type: Sequelize.STRING, allowNull: false},
+  position: {type: Sequelize.INTEGER, allowNull: false, validate: {min: 0}},
 });
 
 Track.hasOne(Duration, {as: "duration"});

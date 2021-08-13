@@ -7,8 +7,8 @@ const Artist = Sequelize.define("artist", {
     defaultValue: Sequelize.UUIDV4,
     primaryKey: true,
   },
-  name: Sequelize.STRING,
-  shortName: {type: Sequelize.STRING, unique: true},
+  name: {type: Sequelize.STRING, allowNull: false},
+  shortName: {type: Sequelize.STRING, allowNull: false, unique: true},
   gender: Sequelize.STRING,
 });
 
