@@ -5,6 +5,6 @@ module.exports = (err, req, res, next) => {
     errors: err.errors || [],
   };
 
-  res.status = status;
+  res.status(status);
   res.json(payload);
 };

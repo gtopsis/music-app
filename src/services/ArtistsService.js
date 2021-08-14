@@ -30,9 +30,6 @@ const retrieveArtistByUUID = async uuid => {
       },
     });
 
-    if (!foundArtist) {
-      throw {status: 404};
-    }
     return foundArtist;
   } catch (error) {
     throw error;

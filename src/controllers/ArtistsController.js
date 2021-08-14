@@ -86,7 +86,7 @@ const deleteArtist = async (req, res, next) => {
 
     let result = ArtistsService.deleteArtist(uuid);
 
-    res.status = 204;
+    res.locals.status = 204;
     next();
   } catch (error) {
     next(error);

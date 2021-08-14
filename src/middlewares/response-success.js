@@ -5,6 +5,6 @@ module.exports = (req, res, next) => {
     success: true,
   };
 
-  res.status = status;
+  res.status(status);
   res.json(payload);
 };
