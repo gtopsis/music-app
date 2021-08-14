@@ -16,5 +16,5 @@ const Track = dbService.getDBConnection().define("track", {
 
 Track.hasOne(Duration, {as: "duration"});
 
-dbConnection.sync();
+// dbConnection.sync();
 module.exports = Track;

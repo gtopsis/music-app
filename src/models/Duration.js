@@ -35,5 +35,5 @@ const Duration = dbService.getDBConnection().define(
   }
 );
 
-dbConnection.sync();
+// dbConnection.sync();
 module.exports = Duration;

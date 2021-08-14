@@ -20,5 +20,5 @@ Recording.belongsTo(Artist, {as: "artist"});
 Recording.hasMany(Track, {as: "tracks"});
 Recording.hasOne(Duration, {as: "duration"});
 
-dbConnection.sync();
+// dbConnection.sync();
 module.exports = Recording;

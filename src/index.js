@@ -13,8 +13,11 @@ const dbService = require("./services/dbService");
 const ResponseSuccess = require("./middlewares/response-success");
 const ResponseError = require("./middlewares/response-error");
 
-dbService
-  .getDBConnection()
+const dbConnection = dbService.getDBConnection();
+// dbService.loadModels();
+
+// After load all models, syn database and start server
+dbConnection
   .sync()
   .then(() => {
     logger.info("Connection has been established successfully.");

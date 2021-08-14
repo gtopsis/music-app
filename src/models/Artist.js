@@ -15,6 +15,6 @@ const Artist = dbConnection.define("artist", {
 });
 
 Artist.hasOne(Area, {as: "area"});
-dbConnection.sync();
+// dbConnection.sync();
 
 module.exports = Artist;

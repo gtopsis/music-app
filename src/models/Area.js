@@ -15,5 +15,5 @@ const Area = dbConnection.define("area", {
   country: Sequelize.STRING,
 });
 
-dbConnection.sync();
+// dbConnection.sync();
 module.exports = Area;

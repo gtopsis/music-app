@@ -25,5 +25,7 @@ const init = () => {
   };
 };
 
+const loadModels = () => {};
+
 let getDBConnection = init();
-module.exports = {getDBConnection};
+module.exports = {getDBConnection, loadModels};
