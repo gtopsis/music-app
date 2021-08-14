@@ -14,7 +14,7 @@ const Artist = dbConnection.define("artist", {
   gender: Sequelize.STRING,
 });
 
-Artist.hasOne(Area, {as: "area"});
+// Artist.hasOne(Area);
 // dbConnection.sync();
 
 module.exports = Artist;

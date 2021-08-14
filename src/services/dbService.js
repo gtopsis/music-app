@@ -25,7 +25,10 @@ const init = () => {
   };
 };
 
-const loadModels = () => {};
+const loadModels = () => {
+  const Artist = require("../models2/Artist");
+  return Artist;
+};
 
 let getDBConnection = init();
 module.exports = {getDBConnection, loadModels};

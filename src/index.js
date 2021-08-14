@@ -9,15 +9,16 @@ const OpenApiValidator = require("express-openapi-validator");
 const app = require("./app");
 const config = require("./config");
 const logger = require("./logger");
-const dbService = require("./services/dbService");
 const ResponseSuccess = require("./middlewares/response-success");
 const ResponseError = require("./middlewares/response-error");
 
-const dbConnection = dbService.getDBConnection();
+// const dbService = require("./services/dbService");
+// const dbConnection = dbService.getDBConnection();
 // dbService.loadModels();
+const models = require("./models");
 
 // After load all models, syn database and start server
-dbConnection
+models.sequelize
   .sync()
   .then(() => {
     logger.info("Connection has been established successfully.");

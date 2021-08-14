@@ -6,7 +6,7 @@ const Track = require("./Track");
 const Duration = require("./Duration");
 const dbConnection = dbService.getDBConnection();
 
-const Recording = dbService.getDBConnection().define("recording", {
+const Recording = dbConnection.define("recording", {
   uuid: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,

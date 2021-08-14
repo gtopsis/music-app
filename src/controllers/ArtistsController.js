@@ -1,5 +1,6 @@
 const ArtistsService = require("../services/ArtistsService");
-const Artist = require("../models/Artist");
+const Artist = require("../models2/Artist");
+const {Op} = require("sequelize");
 
 const retrieveArtists = async (req, res, next) => {
   try {
@@ -25,13 +26,14 @@ const createArtist = async (req, res, next) => {
     });
 
     if (foundArtist) {
-      throw {status: 400};
+      throw {status: 409};
     }
 
-    let newArtist = await ArtistsService.createArtist({name, shortName, gender});
+    let newArtist = await ArtistsService.createArtist({name, shortName, gender, area});
     res.locals.data = newArtist;
     next();
   } catch (error) {
+    console.log("🚀 ~ file: ArtistsController.js ~ line 47 ~ createArtist ~ error", error);
     next(error);
   }
 };
