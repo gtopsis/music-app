@@ -19,7 +19,8 @@ const models = require("./models");
 
 // After load all models, syn database and start server
 models.sequelize
-  .sync({force: true})
+  // .sync({force: true})
+  .sync()
   .then(() => {
     logger.info("Connection has been established successfully.");
     app.listen(config.PORT, () => {

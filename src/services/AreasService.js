@@ -44,7 +44,7 @@ const retrieveAreaByUUID = async uuid => {
 
 const updateArea = async (uuid, data) => {
   try {
-    // const {name, shortName, gender, area} = data;
+    const {name, shortName, gender, area} = data;
     // let res = await models.Area.update({
     //   where: {name, shortName, gender, area},
     // });

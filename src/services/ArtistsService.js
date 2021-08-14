@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-catch */
 const models = require("../models");
+const Op = require("sequelize").Op;
 
 const retrieveArtists = async data => {
   try {
@@ -26,12 +27,10 @@ const createArtist = async data => {
   }
 };
 
-const retrieveArtistByUUID = async uuid => {
+const retrieveArtist = async query => {
   try {
     const foundArtist = await models.Artist.findOne({
-      where: {
-        uuid,
-      },
+      where: query,
       include: "area",
     });
 
@@ -44,9 +43,24 @@ const retrieveArtistByUUID = async uuid => {
 const updateArtist = async (uuid, data) => {
   try {
     const {name, shortName, gender, area} = data;
-    let res = await models.Artist.update({
-      where: {name, shortName, gender, area},
+    const artistFound = await models.Artist.findOne({
+      where: {
+        uuid,
+      },
     });
+
+    if (!artistFound) {
+      throw {
+        status: 404,
+      };
+    }
+
+    artistFound.name = name;
+    artistFound.shortName = shortName;
+    artistFound.gender = gender;
+
+    let artistUpdated = await artistFound.save();
+    return artistUpdated;
   } catch (error) {
     throw error;
   }
@@ -66,7 +80,7 @@ const deleteArtist = async uuid => {
 module.exports = {
   retrieveArtists,
   createArtist,
-  retrieveArtistByUUID,
+  retrieveArtist,
   updateArtist,
   deleteArtist,
 };

@@ -1,6 +1,7 @@
 const ArtistsService = require("../services/ArtistsService");
 const AreasService = require("../services/AreasService");
 const models = require("../models");
+const Op = require("sequelize").Op;
 
 const retrieveArtists = async (req, res, next) => {
   try {
@@ -43,7 +44,7 @@ const retrieveArtist = async (req, res, next) => {
   try {
     // validate params and body
     const uuid = req.params.artistId;
-    const foundArtist = await ArtistsService.retrieveArtistByUUID(uuid);
+    const foundArtist = await ArtistsService.retrieveArtist({uuid});
 
     if (!foundArtist) {
       throw {status: 404};
@@ -62,15 +63,28 @@ const updateArtist = async (req, res, next) => {
     const uuid = req.params.artistId;
     const {name, shortName, gender, area} = req.body;
 
-    const foundArtist = await ArtistsService.retrieveArtistByUUID(uuid);
+    const foundArtist = await ArtistsService.retrieveArtist({uuid});
 
     if (!foundArtist) {
       throw {status: 404};
     }
 
-    let update = {name, shortName, gender, area};
-    let result = ArtistsService.updateArtist(uuid, update);
+    // check if new shortName is already occupied by someone else
+    const artistWithSameShortName = await ArtistsService.retrieveArtist({
+      uuid: {[Op.ne]: uuid},
+      shortName,
+    });
 
+    if (artistWithSameShortName) {
+      throw {status: 409};
+    }
+
+    let update = {name, shortName, gender, area};
+    let result = await ArtistsService.updateArtist(uuid, update);
+
+    // TODO update area details
+
+    res.locals.data = result;
     next();
   } catch (error) {
     next(error);
@@ -81,7 +95,7 @@ const deleteArtist = async (req, res, next) => {
   try {
     // validate params and body
     const uuid = req.params.artistId;
-    const foundArtist = await ArtistsService.retrieveArtistByUUID(uuid);
+    const foundArtist = await ArtistsService.retrieveArtist({uuid});
 
     if (!foundArtist) {
       throw {status: 404};
