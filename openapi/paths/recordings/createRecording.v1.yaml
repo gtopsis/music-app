@@ -21,6 +21,8 @@ responses:
     content:
       application/json:
         schema:
-          $ref: ../../schemas/Recording.v1.yaml
+          allOf:
+            - $ref: ../../schemas/Recording.v1.yaml
+            - $ref: ../../schemas/Timestamps.v1.yaml
   default:
     $ref: "../../schemas/Error.v1.yaml"

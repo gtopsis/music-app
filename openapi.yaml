@@ -45,38 +45,54 @@ paths:
               schema:
                 type: array
                 items:
-                  description: Artist data model
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                      minLength: 1
-                      example: John
-                    shortName:
-                      type: string
-                      minLength: 1
-                      example: best-artist
-                    gender:
-                      type: string
-                      example: woman
-                    area:
+                  allOf:
+                    - description: Artist data model
                       type: object
                       properties:
-                        address:
+                        name:
                           type: string
-                          example: Minoos 12
-                        zip:
+                          minLength: 1
+                          example: John
+                        shortName:
                           type: string
-                          example: 71000
-                        city:
+                          minLength: 1
+                          example: best-artist
+                        gender:
                           type: string
-                          example: Heraklion
-                        country:
+                          example: woman
+                        area:
+                          type: object
+                          properties:
+                            address:
+                              type: string
+                              example: Minoos 12
+                            zip:
+                              type: string
+                              example: 71000
+                            city:
+                              type: string
+                              example: Heraklion
+                            country:
+                              type: string
+                              example: Greece
+                      required:
+                        - name
+                        - shortName
+                    - title: Timestamps
+                      type: object
+                      description: 'Generic timestamps (created, updated) of a resource'
+                      properties:
+                        createdAt:
                           type: string
-                          example: Greece
-                  required:
-                    - name
-                    - shortName
+                          format: date-time
+                          example: '2020-06-12T13:20:45.699Z'
+                        updatedAt:
+                          type: string
+                          format: date-time
+                          example: '2020-06-12T13:20:45.699Z'
+                      required:
+                        - createdAt
+                        - updatedAt
         default:
           description: Unexpected error
     post:
@@ -129,38 +145,54 @@ paths:
           content:
             application/json:
               schema:
-                description: Artist data model
-                type: object
-                properties:
-                  name:
-                    type: string
-                    minLength: 1
-                    example: John
-                  shortName:
-                    type: string
-                    minLength: 1
-                    example: best-artist
-                  gender:
-                    type: string
-                    example: woman
-                  area:
+                allOf:
+                  - description: Artist data model
                     type: object
                     properties:
-                      address:
+                      name:
                         type: string
-                        example: Minoos 12
-                      zip:
+                        minLength: 1
+                        example: John
+                      shortName:
                         type: string
-                        example: 71000
-                      city:
+                        minLength: 1
+                        example: best-artist
+                      gender:
                         type: string
-                        example: Heraklion
-                      country:
+                        example: woman
+                      area:
+                        type: object
+                        properties:
+                          address:
+                            type: string
+                            example: Minoos 12
+                          zip:
+                            type: string
+                            example: 71000
+                          city:
+                            type: string
+                            example: Heraklion
+                          country:
+                            type: string
+                            example: Greece
+                    required:
+                      - name
+                      - shortName
+                  - title: Timestamps
+                    type: object
+                    description: 'Generic timestamps (created, updated) of a resource'
+                    properties:
+                      createdAt:
                         type: string
-                        example: Greece
-                required:
-                  - name
-                  - shortName
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                    required:
+                      - createdAt
+                      - updatedAt
         default:
           description: Unexpected error
   '/v1/artists/{artistId}':
@@ -183,38 +215,54 @@ paths:
           content:
             application/json:
               schema:
-                description: Artist data model
-                type: object
-                properties:
-                  name:
-                    type: string
-                    minLength: 1
-                    example: John
-                  shortName:
-                    type: string
-                    minLength: 1
-                    example: best-artist
-                  gender:
-                    type: string
-                    example: woman
-                  area:
+                allOf:
+                  - description: Artist data model
                     type: object
                     properties:
-                      address:
+                      name:
                         type: string
-                        example: Minoos 12
-                      zip:
+                        minLength: 1
+                        example: John
+                      shortName:
                         type: string
-                        example: 71000
-                      city:
+                        minLength: 1
+                        example: best-artist
+                      gender:
                         type: string
-                        example: Heraklion
-                      country:
+                        example: woman
+                      area:
+                        type: object
+                        properties:
+                          address:
+                            type: string
+                            example: Minoos 12
+                          zip:
+                            type: string
+                            example: 71000
+                          city:
+                            type: string
+                            example: Heraklion
+                          country:
+                            type: string
+                            example: Greece
+                    required:
+                      - name
+                      - shortName
+                  - title: Timestamps
+                    type: object
+                    description: 'Generic timestamps (created, updated) of a resource'
+                    properties:
+                      createdAt:
                         type: string
-                        example: Greece
-                required:
-                  - name
-                  - shortName
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                    required:
+                      - createdAt
+                      - updatedAt
         '404':
           description: The specified resource was not found.
         default:
@@ -268,38 +316,54 @@ paths:
           content:
             application/json:
               schema:
-                description: Artist data model
-                type: object
-                properties:
-                  name:
-                    type: string
-                    minLength: 1
-                    example: John
-                  shortName:
-                    type: string
-                    minLength: 1
-                    example: best-artist
-                  gender:
-                    type: string
-                    example: woman
-                  area:
+                allOf:
+                  - description: Artist data model
                     type: object
                     properties:
-                      address:
+                      name:
                         type: string
-                        example: Minoos 12
-                      zip:
+                        minLength: 1
+                        example: John
+                      shortName:
                         type: string
-                        example: 71000
-                      city:
+                        minLength: 1
+                        example: best-artist
+                      gender:
                         type: string
-                        example: Heraklion
-                      country:
+                        example: woman
+                      area:
+                        type: object
+                        properties:
+                          address:
+                            type: string
+                            example: Minoos 12
+                          zip:
+                            type: string
+                            example: 71000
+                          city:
+                            type: string
+                            example: Heraklion
+                          country:
+                            type: string
+                            example: Greece
+                    required:
+                      - name
+                      - shortName
+                  - title: Timestamps
+                    type: object
+                    description: 'Generic timestamps (created, updated) of a resource'
+                    properties:
+                      createdAt:
                         type: string
-                        example: Greece
-                required:
-                  - name
-                  - shortName
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                    required:
+                      - createdAt
+                      - updatedAt
         '404':
           description: The specified resource was not found.
         default:
@@ -339,24 +403,40 @@ paths:
               schema:
                 type: array
                 items:
-                  description: Recording data model
-                  type: object
-                  properties:
-                    title:
-                      type: string
-                      minLength: 1
-                      example: John
-                    artist:
-                      type: string
-                      minLength: 1
-                      example: best-artist
-                    duration:
-                      type: string
-                      example: '12:20'
-                    tracks:
-                      type: array
-                      items:
-                        type: string
+                  allOf:
+                    - description: Recording data model
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          minLength: 1
+                          example: John
+                        artist:
+                          type: string
+                          minLength: 1
+                          example: best-artist
+                        duration:
+                          type: string
+                          example: '12:20'
+                        tracks:
+                          type: array
+                          items:
+                            type: string
+                    - title: Timestamps
+                      type: object
+                      description: 'Generic timestamps (created, updated) of a resource'
+                      properties:
+                        createdAt:
+                          type: string
+                          format: date-time
+                          example: '2020-06-12T13:20:45.699Z'
+                        updatedAt:
+                          type: string
+                          format: date-time
+                          example: '2020-06-12T13:20:45.699Z'
+                      required:
+                        - createdAt
+                        - updatedAt
         default:
           description: Unexpected error
     post:
@@ -397,24 +477,40 @@ paths:
           content:
             application/json:
               schema:
-                description: Recording data model
-                type: object
-                properties:
-                  title:
-                    type: string
-                    minLength: 1
-                    example: John
-                  artist:
-                    type: string
-                    minLength: 1
-                    example: best-artist
-                  duration:
-                    type: string
-                    example: '12:20'
-                  tracks:
-                    type: array
-                    items:
-                      type: string
+                allOf:
+                  - description: Recording data model
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        minLength: 1
+                        example: John
+                      artist:
+                        type: string
+                        minLength: 1
+                        example: best-artist
+                      duration:
+                        type: string
+                        example: '12:20'
+                      tracks:
+                        type: array
+                        items:
+                          type: string
+                  - title: Timestamps
+                    type: object
+                    description: 'Generic timestamps (created, updated) of a resource'
+                    properties:
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                    required:
+                      - createdAt
+                      - updatedAt
         default:
           description: Unexpected error
   '/v1/artists/{artistId}/recordings/{recordingId}':
@@ -443,24 +539,40 @@ paths:
           content:
             application/json:
               schema:
-                description: Recording data model
-                type: object
-                properties:
-                  title:
-                    type: string
-                    minLength: 1
-                    example: John
-                  artist:
-                    type: string
-                    minLength: 1
-                    example: best-artist
-                  duration:
-                    type: string
-                    example: '12:20'
-                  tracks:
-                    type: array
-                    items:
-                      type: string
+                allOf:
+                  - description: Recording data model
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        minLength: 1
+                        example: John
+                      artist:
+                        type: string
+                        minLength: 1
+                        example: best-artist
+                      duration:
+                        type: string
+                        example: '12:20'
+                      tracks:
+                        type: array
+                        items:
+                          type: string
+                  - title: Timestamps
+                    type: object
+                    description: 'Generic timestamps (created, updated) of a resource'
+                    properties:
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                    required:
+                      - createdAt
+                      - updatedAt
         '404':
           description: The specified resource was not found.
         default:
@@ -506,24 +618,40 @@ paths:
           content:
             application/json:
               schema:
-                description: Recording data model
-                type: object
-                properties:
-                  title:
-                    type: string
-                    minLength: 1
-                    example: John
-                  artist:
-                    type: string
-                    minLength: 1
-                    example: best-artist
-                  duration:
-                    type: string
-                    example: '12:20'
-                  tracks:
-                    type: array
-                    items:
-                      type: string
+                allOf:
+                  - description: Recording data model
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        minLength: 1
+                        example: John
+                      artist:
+                        type: string
+                        minLength: 1
+                        example: best-artist
+                      duration:
+                        type: string
+                        example: '12:20'
+                      tracks:
+                        type: array
+                        items:
+                          type: string
+                  - title: Timestamps
+                    type: object
+                    description: 'Generic timestamps (created, updated) of a resource'
+                    properties:
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                    required:
+                      - createdAt
+                      - updatedAt
         '404':
           description: The specified resource was not found.
         default:
@@ -576,21 +704,37 @@ paths:
               schema:
                 type: array
                 items:
-                  description: Track data model
-                  type: object
-                  properties:
-                    title:
-                      type: string
-                      minLength: 1
-                      example: John
-                    position:
-                      type: integer
-                      format: int32
-                      minimum: 0
-                      example: 0
-                    duration:
-                      type: string
-                      example: female
+                  allOf:
+                    - description: Track data model
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          minLength: 1
+                          example: John
+                        position:
+                          type: integer
+                          format: int32
+                          minimum: 0
+                          example: 0
+                        duration:
+                          type: string
+                          example: female
+                    - title: Timestamps
+                      type: object
+                      description: 'Generic timestamps (created, updated) of a resource'
+                      properties:
+                        createdAt:
+                          type: string
+                          format: date-time
+                          example: '2020-06-12T13:20:45.699Z'
+                        updatedAt:
+                          type: string
+                          format: date-time
+                          example: '2020-06-12T13:20:45.699Z'
+                      required:
+                        - createdAt
+                        - updatedAt
         default:
           description: Unexpected error
     post:
@@ -633,21 +777,37 @@ paths:
           content:
             application/json:
               schema:
-                description: Track data model
-                type: object
-                properties:
-                  title:
-                    type: string
-                    minLength: 1
-                    example: John
-                  position:
-                    type: integer
-                    format: int32
-                    minimum: 0
-                    example: 0
-                  duration:
-                    type: string
-                    example: female
+                allOf:
+                  - description: Track data model
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        minLength: 1
+                        example: John
+                      position:
+                        type: integer
+                        format: int32
+                        minimum: 0
+                        example: 0
+                      duration:
+                        type: string
+                        example: female
+                  - title: Timestamps
+                    type: object
+                    description: 'Generic timestamps (created, updated) of a resource'
+                    properties:
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                    required:
+                      - createdAt
+                      - updatedAt
         default:
           description: Unexpected error
   '/v1/recordings/{recordingId}/tracks/{trackId}':
@@ -676,21 +836,37 @@ paths:
           content:
             application/json:
               schema:
-                description: Track data model
-                type: object
-                properties:
-                  title:
-                    type: string
-                    minLength: 1
-                    example: John
-                  position:
-                    type: integer
-                    format: int32
-                    minimum: 0
-                    example: 0
-                  duration:
-                    type: string
-                    example: female
+                allOf:
+                  - description: Track data model
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        minLength: 1
+                        example: John
+                      position:
+                        type: integer
+                        format: int32
+                        minimum: 0
+                        example: 0
+                      duration:
+                        type: string
+                        example: female
+                  - title: Timestamps
+                    type: object
+                    description: 'Generic timestamps (created, updated) of a resource'
+                    properties:
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                    required:
+                      - createdAt
+                      - updatedAt
         '404':
           description: The specified resource was not found.
         default:
@@ -740,21 +916,37 @@ paths:
           content:
             application/json:
               schema:
-                description: Track data model
-                type: object
-                properties:
-                  title:
-                    type: string
-                    minLength: 1
-                    example: John
-                  position:
-                    type: integer
-                    format: int32
-                    minimum: 0
-                    example: 0
-                  duration:
-                    type: string
-                    example: female
+                allOf:
+                  - description: Track data model
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        minLength: 1
+                        example: John
+                      position:
+                        type: integer
+                        format: int32
+                        minimum: 0
+                        example: 0
+                      duration:
+                        type: string
+                        example: female
+                  - title: Timestamps
+                    type: object
+                    description: 'Generic timestamps (created, updated) of a resource'
+                    properties:
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        example: '2020-06-12T13:20:45.699Z'
+                    required:
+                      - createdAt
+                      - updatedAt
         '404':
           description: The specified resource was not found.
         default:

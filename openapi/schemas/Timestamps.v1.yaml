@@ -1,0 +1,15 @@
+title: Timestamps
+type: object
+description: Generic timestamps (created, updated) of a resource
+properties:
+  createdAt:
+    type: string
+    format: date-time
+    example: "2020-06-12T13:20:45.699Z"
+  updatedAt:
+    type: string
+    format: date-time
+    example: "2020-06-12T13:20:45.699Z"
+required:
+  - createdAt
+  - updatedAt

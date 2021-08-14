@@ -22,7 +22,9 @@ responses:
     content:
       application/json:
         schema:
-          $ref: ../../schemas/Track.v1.yaml
+          allOf:
+            - $ref: ../../schemas/Track.v1.yaml
+            - $ref: ../../schemas/Timestamps.v1.yaml
 
   "404":
     description: The specified resource was not found.
