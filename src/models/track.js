@@ -7,8 +7,12 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate({Recording}) {
       // define association here
+      this.belongsTo(Recording, {
+        foreignKey: "recordingUUID",
+        as: "recording",
+      });
     }
   }
   Track.init(
