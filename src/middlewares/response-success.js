@@ -2,7 +2,7 @@ module.exports = (req, res, next) => {
   let status = res.locals.status || 200;
   let payload = {
     data: res.locals.data || {},
-    message: res.locals.message || "Successful Operation",
+    success: true,
   };
 
   res.status = status;
