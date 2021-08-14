@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 const dbService = require("../services/dbService");
 
 const Duration = require("./Duration");
+const dbConnection = dbService.getDBConnection();
 
 const Track = dbService.getDBConnection().define("track", {
   uuid: {
@@ -14,4 +15,6 @@ const Track = dbService.getDBConnection().define("track", {
 });
 
 Track.hasOne(Duration, {as: "duration"});
+
+dbConnection.sync();
 module.exports = Track;

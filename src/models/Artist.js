@@ -2,7 +2,8 @@ const Sequelize = require("sequelize");
 const dbService = require("../services/dbService");
 const Area = require("./Area");
 
-const Artist = dbService.getDBConnection().define("artist", {
+const dbConnection = dbService.getDBConnection();
+const Artist = dbConnection.define("artist", {
   uuid: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
@@ -14,5 +15,6 @@ const Artist = dbService.getDBConnection().define("artist", {
 });
 
 Artist.hasOne(Area, {as: "area"});
+dbConnection.sync();
 
 module.exports = Artist;

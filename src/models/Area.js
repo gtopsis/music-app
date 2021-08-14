@@ -1,7 +1,9 @@
 const Sequelize = require("sequelize");
 const dbService = require("../services/dbService");
 
-const Area = dbService.getDBConnection().define("area", {
+const dbConnection = dbService.getDBConnection();
+
+const Area = dbConnection.define("area", {
   uuid: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
@@ -13,4 +15,5 @@ const Area = dbService.getDBConnection().define("area", {
   country: Sequelize.STRING,
 });
 
+dbConnection.sync();
 module.exports = Area;

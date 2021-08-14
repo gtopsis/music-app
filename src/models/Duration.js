@@ -1,6 +1,8 @@
 const Sequelize = require("sequelize");
 const dbService = require("../services/dbService");
 
+const dbConnection = dbService.getDBConnection();
+
 const Duration = dbService.getDBConnection().define(
   "duration",
   {
@@ -33,4 +35,5 @@ const Duration = dbService.getDBConnection().define(
   }
 );
 
+dbConnection.sync();
 module.exports = Duration;
