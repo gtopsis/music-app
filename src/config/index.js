@@ -1,5 +1,4 @@
 require("dotenv").config();
-const dbConfig = require("./db");
 
 let config = {
   PORT: process.env.PORT || 3000,
@@ -11,7 +10,6 @@ let config = {
   },
   BODY_SIZE: process.env.BODY_SIZE || "20MB",
   ENVIRONMENT: process.env.NODE_ENV || "development",
-  ...dbConfig,
 };
 
 module.exports = config;

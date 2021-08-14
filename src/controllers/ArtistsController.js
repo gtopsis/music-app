@@ -1,6 +1,6 @@
 const ArtistsService = require("../services/ArtistsService");
-const Artist = require("../models2/Artist");
-const {Op} = require("sequelize");
+const AreasService = require("../services/AreasService");
+const models = require("../models");
 
 const retrieveArtists = async (req, res, next) => {
   try {
@@ -19,7 +19,7 @@ const createArtist = async (req, res, next) => {
   try {
     // validate params and body
     const {name, shortName, gender, area} = req.body;
-    const foundArtist = await Artist.findOne({
+    const foundArtist = await models.Artist.findOne({
       where: {
         shortName,
       },
@@ -30,7 +30,8 @@ const createArtist = async (req, res, next) => {
     }
 
     let newArtist = await ArtistsService.createArtist({name, shortName, gender, area});
-    res.locals.data = newArtist;
+    let newArea = await AreasService.createArea(area, newArtist.uuid);
+    res.locals.data = {...newArtist.dataValues, area: newArea};
     next();
   } catch (error) {
     console.log("🚀 ~ file: ArtistsController.js ~ line 47 ~ createArtist ~ error", error);
