@@ -4,11 +4,6 @@ properties:
     type: string
     minLength: 1
     example: Album 1
-  artist:
-    type: string
-    minLength: 1
-    example: best-artist
 
 required:
   - title
-  - artist
