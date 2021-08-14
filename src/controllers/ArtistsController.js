@@ -28,7 +28,7 @@ const createArtist = async (req, res, next) => {
       throw {status: 400};
     }
 
-    let newArtist = await Artist.create({name, shortName, gender});
+    let newArtist = await ArtistsService.createArtist({name, shortName, gender});
     res.locals.data = newArtist;
     next();
   } catch (error) {
@@ -57,11 +57,16 @@ const updateArtist = async (req, res, next) => {
   try {
     // validate params and body
     const uuid = req.params.artistId;
+    const {name, shortName, gender, area} = req.body;
+
     const foundArtist = await ArtistsService.retrieveArtistByUUID(uuid);
 
     if (!foundArtist) {
       throw {status: 404};
     }
+
+    let update = {name, shortName, gender, area};
+    let result = ArtistsService.updateArtist(uuid, update);
 
     next();
   } catch (error) {
@@ -78,6 +83,8 @@ const deleteArtist = async (req, res, next) => {
     if (!foundArtist) {
       throw {status: 404};
     }
+
+    let result = ArtistsService.deleteArtist(uuid);
 
     res.status = 204;
     next();

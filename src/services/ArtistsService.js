@@ -14,6 +14,9 @@ const retrieveArtists = async data => {
 const createArtist = async data => {
   try {
     // validate params and body
+    const {name, shortName, gender} = data;
+    let artist = await Artist.create({name, shortName, gender});
+    return artist;
   } catch (error) {
     throw error;
   }
@@ -36,17 +39,23 @@ const retrieveArtistByUUID = async uuid => {
   }
 };
 
-const updateArtist = async data => {
+const updateArtist = async (uuid, data) => {
   try {
-    // validate params and body
+    const {name, shortName, gender, area} = data;
+    let res = await Artist.update({
+      where: {name, shortName, gender, area},
+    });
   } catch (error) {
     throw error;
   }
 };
 
-const deleteArtist = async data => {
+const deleteArtist = async uuid => {
   try {
-    // validate params and body
+    let res = await Artist.destroy({
+      where: {uuid: uuid},
+    });
+    return res;
   } catch (error) {
     throw error;
   }
