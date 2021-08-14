@@ -31,5 +31,3 @@ properties:
 required:
   - name
   - shortName
-  - gender
-  - area

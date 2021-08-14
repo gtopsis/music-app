@@ -77,8 +77,6 @@ paths:
                   required:
                     - name
                     - shortName
-                    - gender
-                    - area
         default:
           description: Unexpected error
     post:
@@ -125,8 +123,6 @@ paths:
               required:
                 - name
                 - shortName
-                - gender
-                - area
       responses:
         '201':
           description: New Artist
@@ -165,8 +161,6 @@ paths:
                 required:
                   - name
                   - shortName
-                  - gender
-                  - area
         default:
           description: Unexpected error
   '/v1/artists/{artistId}':
@@ -221,8 +215,6 @@ paths:
                 required:
                   - name
                   - shortName
-                  - gender
-                  - area
         '404':
           description: The specified resource was not found.
         default:
@@ -308,8 +300,6 @@ paths:
                 required:
                   - name
                   - shortName
-                  - gender
-                  - area
         '404':
           description: The specified resource was not found.
         default:
