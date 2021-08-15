@@ -31,5 +31,5 @@ Before running the app, you have to create the following two databases. You will
 ### Running the tests
 
 ```sh
-$ npm run test:api-unit
+    $ npm run test:api-unit
 ```
