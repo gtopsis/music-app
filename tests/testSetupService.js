@@ -14,8 +14,8 @@ module.exports = {
 
       return (
         models.sequelize
-          // .sync({force: true})
-          .sync()
+          .sync({force: true})
+          // .sync()
           .then(data => {
             dbConnection = data;
           })
