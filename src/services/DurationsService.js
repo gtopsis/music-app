@@ -19,12 +19,10 @@ const createDuration = async (data, foreignKey) => {
   }
 };
 
-const retrieveDurationByUUID = async uuid => {
+const retrieveDuration = async query => {
   try {
     const foundDuration = await models.Duration.findOne({
-      where: {
-        uuid,
-      },
+      where: query,
     });
 
     return foundDuration;
@@ -55,6 +53,6 @@ const updateDuration = async (uuid, data) => {
 
 module.exports = {
   createDuration,
-  retrieveDurationByUUID,
+  retrieveDuration,
   updateDuration,
 };

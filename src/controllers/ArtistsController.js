@@ -20,6 +20,8 @@ const createArtist = async (req, res, next) => {
   try {
     // validate params and body
     const {name, shortName, gender, area} = req.body;
+    const {city, address, country, zipCode} = area;
+
     const artistFound = await models.Artist.findOne({
       where: {
         shortName,
@@ -30,8 +32,12 @@ const createArtist = async (req, res, next) => {
       throw {status: 409};
     }
 
-    let newArtist = await ArtistsService.createArtist({name, shortName, gender, area});
-    let newArea = await AreasService.createArea(area, newArtist.uuid);
+    let artistData = {name, shortName, gender};
+    let newArtist = await ArtistsService.createArtist(artistData);
+
+    let areaData = {city, address, country, zipCode};
+    let newArea = await AreasService.createArea(areaData, newArtist.uuid);
+
     res.locals.data = {...newArtist.dataValues, area: newArea};
     next();
   } catch (error) {
@@ -61,6 +67,7 @@ const updateArtist = async (req, res, next) => {
     // validate params and body
     const uuid = req.params.artistId;
     const {name, shortName, gender, area} = req.body;
+    const {city, address, country, zipCode} = area;
 
     const artistFound = await ArtistsService.retrieveArtist({uuid});
 
@@ -78,12 +85,17 @@ const updateArtist = async (req, res, next) => {
       throw {status: 409};
     }
 
-    let update = {name, shortName, gender, area};
-    let result = await ArtistsService.updateArtist(uuid, update);
+    let artistData = {name, shortName, gender};
+    let artistUpdated = await ArtistsService.updateArtist(uuid, artistData);
 
-    // TODO update area details
+    // update area details
+    let areaData = {city, address, country, zipCode};
+    let areaFound = await AreasService.retrieveArea({artistUUID: artistFound.uuid});
+    if (areaFound) {
+      let areaUpdated = await AreasService.updateArea(areaFound.uuid, areaData);
+    }
 
-    res.locals.data = result;
+    res.locals.data = artistUpdated;
     next();
   } catch (error) {
     next(error);

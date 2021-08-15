@@ -27,12 +27,10 @@ const createArea = async (data, artistUuid) => {
   }
 };
 
-const retrieveAreaByUUID = async uuid => {
+const retrieveArea = async query => {
   try {
     const foundArea = await models.Area.findOne({
-      where: {
-        uuid,
-      },
+      where: query,
     });
 
     return foundArea;
@@ -76,7 +74,7 @@ const deleteArea = async uuid => {
 module.exports = {
   retrieveAreas,
   createArea,
-  retrieveAreaByUUID,
+  retrieveArea,
   updateArea,
   deleteArea,
 };
