@@ -1,10 +1,19 @@
+const ServerError = require("../utils/error");
+
 module.exports = (err, req, res, next) => {
   let status = err.status || 500;
-  let payload = {
-    success: false,
-    errors: err.errors || [err],
+
+  let errorData = {
+    status,
+    message: err.message,
   };
 
-  res.status(status);
-  res.json(payload);
+  let error = new ServerError(errorData);
+
+  let payload = {
+    success: false,
+    error,
+  };
+
+  res.status(status).json(payload);
 };
