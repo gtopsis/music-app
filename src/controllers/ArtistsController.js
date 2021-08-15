@@ -85,23 +85,22 @@ const updateArtist = async (req, res, next) => {
       throw {status: 409};
     }
 
-    let artistUpdated;
-    if (name != undefined || shortName != undefined || gender != undefined) {
-      let artistData = {name, shortName, gender};
-      artistUpdated = await ArtistsService.updateArtist(uuid, artistData);
-    }
+    let artistData = {name, shortName, gender};
+    let artistUpdated = await ArtistsService.updateArtist(uuid, artistData);
 
     // update area details
-    if (city != undefined || address != undefined || country != undefined || zipCode != undefined) {
-      let areaData = {city, address, country, zipCode};
-      let query = {artistUUID: artistFound.uuid};
-      let areaFound = await AreasService.retrieveArea(query);
-      if (areaFound) {
-        let areaUpdated = await AreasService.updateArea(areaFound.uuid, areaData);
-      }
+    let query = {artistUUID: artistFound.uuid};
+    let areaFound = await AreasService.retrieveArea(query);
+
+    let areaData = {city, address, country, zipCode};
+
+    if (!areaFound) {
+      throw {status: 500};
     }
 
-    res.locals.data = artistUpdated || artistFound;
+    let areaUpdated = await AreasService.updateArea(areaFound.uuid, areaData);
+
+    res.locals.data = {...artistUpdated.dataValues, area: areaUpdated};
     next();
   } catch (error) {
     next(error);
