@@ -803,7 +803,7 @@
         "tags": [
           "Tracks"
         ],
-        "operationId": "retrieveTracks",
+        "operationId": "createTrack",
         "x-eov-operation-handler": "TracksController",
         "parameters": [
           {

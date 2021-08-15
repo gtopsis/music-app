@@ -554,7 +554,7 @@ paths:
       summary: Create a Track
       tags:
         - Tracks
-      operationId: retrieveTracks
+      operationId: createTrack
       x-eov-operation-handler: TracksController
       parameters:
         - in: path
