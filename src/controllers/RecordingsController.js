@@ -1,8 +1,6 @@
+// const DurationService = require("../services/DurationService");
 const RecordingsService = require("../services/RecordingsService");
 const ArtistsService = require("../services/ArtistsService");
-const TracksService = require("../services/TracksService");
-// const DurationService = require("../services/DurationService");
-const models = require("../models");
 const Op = require("sequelize").Op;
 
 const retrieveRecordings = async (req, res, next) => {
@@ -10,7 +8,7 @@ const retrieveRecordings = async (req, res, next) => {
     // validate params and body
     const artistId = req.params.artistId;
 
-    const artistFound = await ArtistsService.retrieveRecording({uuid: artistId});
+    const artistFound = await ArtistsService.retrieveArtist({uuid: artistId});
 
     if (!artistFound) {
       throw {status: 400};
@@ -31,7 +29,7 @@ const createRecording = async (req, res, next) => {
     const artistId = req.params.artistId;
     const {title} = req.body;
 
-    const artistFound = await ArtistsService.retrieveRecording({uuid: artistId});
+    const artistFound = await ArtistsService.retrieveArtist({uuid: artistId});
 
     if (!artistFound) {
       throw {status: 400};
@@ -57,7 +55,7 @@ const retrieveRecording = async (req, res, next) => {
     // validate params and body
     const {recordingId, artistId} = req.params;
 
-    const artistFound = await ArtistsService.retrieveRecording({uuid: artistId});
+    const artistFound = await ArtistsService.retrieveArtist({uuid: artistId});
 
     if (!artistFound) {
       throw {status: 400};
@@ -82,7 +80,7 @@ const updateRecording = async (req, res, next) => {
     const {recordingId, artistId} = req.params;
     const {title} = req.body;
 
-    const artistFound = await ArtistsService.retrieveRecording({uuid: artistId});
+    const artistFound = await ArtistsService.retrieveArtist({uuid: artistId});
 
     if (!artistFound) {
       throw {status: 400};
@@ -94,15 +92,17 @@ const updateRecording = async (req, res, next) => {
       throw {status: 404};
     }
 
-    // check if new title is already occupied by a different album of the SAME artist
-    const recordingWithSameShortTitle = await RecordingsService.retrieveRecording({
-      uuid: {[Op.ne]: recordingId},
-      title,
-      artistUUID: artistId,
-    });
+    if (title != undefined && title != null) {
+      // check if new title is already occupied by a different album of the SAME artist
+      const recordingWithSameTitle = await RecordingsService.retrieveRecording({
+        uuid: {[Op.ne]: recordingId},
+        title,
+        artistUUID: artistId,
+      });
 
-    if (recordingWithSameShortTitle) {
-      throw {status: 409};
+      if (recordingWithSameTitle) {
+        throw {status: 409};
+      }
     }
 
     let update = {title};
@@ -120,7 +120,7 @@ const deleteRecording = async (req, res, next) => {
     // validate params and body
     const {recordingId, artistId} = req.params;
 
-    const artistFound = await ArtistsService.retrieveRecording({uuid: artistId});
+    const artistFound = await ArtistsService.retrieveArtist({uuid: artistId});
 
     if (!artistFound) {
       throw {status: 400};
