@@ -9,7 +9,7 @@
     "openapi:bundle": "swagger-cli bundle ./openapi/api.v1.yaml --outfile openapi.yaml --type yaml --dereference",
     "openapi:publish": "npm run openapi:validate && npm run openapi:bundle && swagger-cli bundle ./openapi/api.v1.yaml --outfile ./public/openapi.json --type json --dereference",
     "test:api-unit": "cross-env NODE_ENV=test jest --runInBand",
-    "test:unit": "jest"
+    "test:api-unit-watch": "cross-env NODE_ENV=test jest --runInBand --watch"
   },
   "repository": {
     "type": "git",

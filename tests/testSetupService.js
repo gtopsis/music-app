@@ -1,14 +1,25 @@
 // test-setup.js
 const appConfig = require("../src/config");
 const logger = require("../src/logger");
+const models = require("../src/models");
 
 async function dropAllCollections() {}
 
+let dbConnection;
 module.exports = {
   setUpTestEnv(app) {
-    // Connect to Mongoose
-    beforeAll(async () => {
+    // Connect to Database
+    beforeAll(() => {
       process.env.NODE_ENV = "test";
+
+      return (
+        models.sequelize
+          // .sync({force: true})
+          .sync()
+          .then(data => {
+            dbConnection = data;
+          })
+      );
     });
 
     // // Cleans up database between each test
@@ -16,9 +27,10 @@ module.exports = {
       //   await removeAllCollections();
     });
 
-    // Disconnect Mongoose
+    // Disconnect Database
     afterAll(async () => {
-      await dropAllCollections();
+      await dbConnection.close();
+      // await dropAllCollections();
     });
   },
 };
