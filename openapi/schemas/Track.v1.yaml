@@ -14,3 +14,8 @@ properties:
     type: string
     format: duration
     example: "12:14"
+
+required:
+  - title
+  - position
+  - duration

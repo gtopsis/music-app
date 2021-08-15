@@ -841,7 +841,12 @@
                     "format": "duration",
                     "example": "12:14"
                   }
-                }
+                },
+                "required": [
+                  "title",
+                  "position",
+                  "duration"
+                ]
               }
             }
           }
@@ -871,7 +876,12 @@
                       "format": "duration",
                       "example": "12:14"
                     }
-                  }
+                  },
+                  "required": [
+                    "title",
+                    "position",
+                    "duration"
+                  ]
                 }
               }
             }
@@ -935,7 +945,12 @@
                       "format": "duration",
                       "example": "12:14"
                     }
-                  }
+                  },
+                  "required": [
+                    "title",
+                    "position",
+                    "duration"
+                  ]
                 }
               }
             }
@@ -999,7 +1014,12 @@
                     "format": "duration",
                     "example": "05:15"
                   }
-                }
+                },
+                "required": [
+                  "title",
+                  "position",
+                  "duration"
+                ]
               }
             }
           }
@@ -1029,7 +1049,12 @@
                       "format": "duration",
                       "example": "12:14"
                     }
-                  }
+                  },
+                  "required": [
+                    "title",
+                    "position",
+                    "duration"
+                  ]
                 }
               }
             }

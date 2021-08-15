@@ -585,6 +585,10 @@ paths:
                   type: string
                   format: duration
                   example: '12:14'
+              required:
+                - title
+                - position
+                - duration
       responses:
         '201':
           description: New Recording
@@ -607,6 +611,10 @@ paths:
                     type: string
                     format: duration
                     example: '12:14'
+                required:
+                  - title
+                  - position
+                  - duration
         default:
           description: Unexpected error
   '/v1/recordings/{recordingId}/tracks/{trackId}':
@@ -651,6 +659,10 @@ paths:
                     type: string
                     format: duration
                     example: '12:14'
+                required:
+                  - title
+                  - position
+                  - duration
         '404':
           description: The specified resource was not found.
         default:
@@ -695,6 +707,10 @@ paths:
                   type: string
                   format: duration
                   example: '05:15'
+              required:
+                - title
+                - position
+                - duration
       responses:
         '200':
           description: New data of a Track
@@ -717,6 +733,10 @@ paths:
                     type: string
                     format: duration
                     example: '12:14'
+                required:
+                  - title
+                  - position
+                  - duration
         '404':
           description: The specified resource was not found.
         default:
