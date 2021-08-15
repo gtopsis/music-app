@@ -49,7 +49,7 @@ const updateRecording = async (uuid, data) => {
       };
     }
 
-    recordingFound.title = title;
+    recordingFound.title = title != undefined ? title : recordingFound.title;
 
     let recordingUpdated = await recordingFound.save();
     return recordingUpdated;

@@ -93,30 +93,34 @@ const updateRecording = async (req, res, next) => {
       throw {status: 400};
     }
 
-    const recordingFound = await RecordingsService.retrieveRecording({uuid: recordingId});
+    let query = {uuid: recordingId};
+    const recordingFound = await RecordingsService.retrieveRecording(query);
 
     if (!recordingFound) {
       throw {status: 404};
     }
 
     let recordingUpdated;
-    if (title != undefined && title != null) {
-      // check if new title is already occupied by a DIFFERENT album of the SAME artist
-      const recordingWithSameTitle = await RecordingsService.retrieveRecording({
-        uuid: {[Op.ne]: recordingId},
-        title,
-        artistUUID: artistId,
-      });
+    // check if new title is already occupied by a DIFFERENT album of the SAME artist
+    const recordingWithSameTitle = await RecordingsService.retrieveRecording({
+      uuid: {[Op.ne]: recordingId},
+      title,
+      artistUUID: artistId,
+    });
 
-      if (recordingWithSameTitle) {
-        throw {status: 409};
-      }
-
-      let recordingData = {title};
-      recordingUpdated = await RecordingsService.updateRecording(recordingId, recordingData);
+    if (recordingWithSameTitle) {
+      throw {status: 409};
     }
 
-    res.locals.data = recordingUpdated || recordingFound;
+    let recordingData = {title};
+    recordingUpdated = await RecordingsService.updateRecording(recordingId, recordingData);
+
+    let durationFound = await DurationsService.retrieveDuration({recordingUUID: recordingFound.uuid});
+    if (!durationFound) {
+      throw {status: 500};
+    }
+
+    res.locals.data = {...recordingUpdated.dataValues, duration: durationFound};
     next();
   } catch (error) {
     next(error);
