@@ -1,39 +1,78 @@
 /* eslint-disable no-useless-catch */
-const retrieveTracks = async data => {
+const models = require("../models");
+const Op = require("sequelize").Op;
+
+const retrieveTracks = async () => {
   try {
-    // validate params and body
+    let tracks = await models.Track.findAll({
+      include: [
+        /*'duration'*/
+      ],
+    });
+    return tracks;
   } catch (error) {
     throw error;
   }
 };
 
-const createTrack = async data => {
+const createTrack = async (data, recordingUUID) => {
   try {
+    const {title, position, duration} = data;
     // validate params and body
+    let newTrack = await models.Track.create({title, position, recordingUUID});
+    return newTrack;
   } catch (error) {
     throw error;
   }
 };
 
-const retrieveTrack = async data => {
+const retrieveTrack = async query => {
   try {
-    // validate params and body
+    const foundTrack = await models.Track.findOne({
+      where: query,
+      // include: "area",
+      include: [
+        /*'duration'*/
+      ],
+    });
+
+    return foundTrack;
   } catch (error) {
     throw error;
   }
 };
 
-const updateTrack = async data => {
+const updateTrack = async (uuid, data) => {
   try {
-    // validate params and body
+    const {title, position} = data;
+    const trackFound = await models.Track.findOne({
+      where: {
+        uuid,
+      },
+    });
+
+    if (!trackFound) {
+      throw {
+        status: 404,
+      };
+    }
+
+    trackFound.title = title;
+    trackFound.position = position;
+
+    let trackUpdated = await trackFound.save();
+    return trackUpdated;
   } catch (error) {
     throw error;
   }
 };
 
-const deleteTrack = async data => {
+const deleteTrack = async uuid => {
   try {
-    // validate params and body
+    let res = await models.Track.destroy({
+      where: {uuid: uuid},
+    });
+    return res;
   } catch (error) {
     throw error;
   }
