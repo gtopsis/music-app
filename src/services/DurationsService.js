@@ -5,11 +5,21 @@ const createDuration = async (data, foreignKey) => {
   try {
     // validate params and body
     const {hours, minutes, seconds} = data;
+    const hoursInt = parseInt(hours);
+    const minutesInt = parseInt(minutes);
+    const secondsInt = parseInt(seconds);
+
+    let finalDuration = {};
+    if (!isNaN(hoursInt)) {
+      finalDuration.hours = hoursInt;
+    } else if (!isNaN(minutesInt)) {
+      finalDuration.minutes = minutesInt;
+    } else if (!isNaN(secondsInt)) {
+      finalDuration.seconds = secondsInt;
+    }
 
     let newDuration = await models.Duration.create({
-      hours: parseInt(hours),
-      minutes: parseInt(minutes),
-      seconds: parseInt(seconds),
+      ...finalDuration,
       ...foreignKey,
     });
 
@@ -21,11 +31,11 @@ const createDuration = async (data, foreignKey) => {
 
 const retrieveDuration = async query => {
   try {
-    const foundDuration = await models.Duration.findOne({
+    const durationFound = await models.Duration.findOne({
       where: query,
     });
 
-    return foundDuration;
+    return durationFound;
   } catch (error) {
     throw error;
   }
@@ -34,17 +44,31 @@ const retrieveDuration = async query => {
 const updateDuration = async (uuid, data) => {
   try {
     const {hours, minutes, seconds} = data;
-    const foundDuration = await models.Duration.findOne({
+    const hoursInt = parseInt(hours);
+    const minutesInt = parseInt(minutes);
+    const secondsInt = parseInt(seconds);
+
+    const durationFound = await models.Duration.findOne({
       where: {
         uuid,
       },
     });
 
-    foundDuration.hours = parseInt(hours);
-    foundDuration.minutes = parseInt(minutes);
-    foundDuration.seconds = parseInt(seconds);
+    if (!durationFound) {
+      throw {status: 404};
+    }
 
-    let newDuration = await foundDuration.save();
+    if (!isNaN(hoursInt)) {
+      durationFound.hours = hoursInt;
+    }
+    if (!isNaN(minutesInt)) {
+      durationFound.minutes = minutesInt;
+    }
+    if (!isNaN(secondsInt)) {
+      durationFound.seconds = secondsInt;
+    }
+
+    let newDuration = await durationFound.save();
     return newDuration;
   } catch (error) {
     throw error;

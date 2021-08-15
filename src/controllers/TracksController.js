@@ -34,9 +34,11 @@ const createTrack = async (req, res, next) => {
 
     // TODO check if a track in the same album has the same position
 
-    let data = {title, position};
-    let newTrack = await TracksService.createTrack(data, recordingFound.uuid);
-    let newDuration = await DurationsService.createDuration({hours, minutes, seconds}, {trackUUID: newTrack.uuid});
+    let trackData = {title, position};
+    let newTrack = await TracksService.createTrack(trackData, recordingFound.uuid);
+
+    let durationData = {hours, minutes, seconds};
+    let newDuration = await DurationsService.createDuration(durationData, {trackUUID: newTrack.uuid});
 
     res.locals.data = {...newTrack.dataValues, duration: newDuration};
     next();
@@ -87,13 +89,11 @@ const updateTrack = async (req, res, next) => {
     }
 
     const recordingFound = await RecordingsService.retrieveRecording({uuid: recordingId});
-
     if (!recordingFound) {
       throw {status: 400};
     }
 
     const trackFound = await TracksService.retrieveTrack({uuid: trackId});
-
     if (!trackFound) {
       throw {status: 404};
     }
@@ -117,18 +117,27 @@ const updateTrack = async (req, res, next) => {
       trackUpdated = await TracksService.trackDataTrack(trackId, trackData);
     }
 
-    let secondsInt = parseInt(seconds);
-    let minutesInt = parseInt(minutes);
-    let hoursInt = parseInt(hours);
-
     let result = {};
     if (!trackUpdated) {
-      result = {...trackUpdated.dataValues};
+      result = trackUpdated.dataValues;
     } else {
-      result = {...trackFound.dataValues};
+      result = trackFound.dataValues;
     }
 
-    // let durationUpdated = await DurationsService.updateDuration();
+    let durationFound = await DurationsService.retrieveDuration({
+      recordingUUID: recordingFound.uuid,
+    });
+    if (!durationFound) {
+      throw {staus: 500};
+    }
+    if (seconds != undefined || minutes != undefined || hours != undefined) {
+      let durationData = {hours, minutes, seconds};
+      let durationUpdated = await DurationsService.updateDuration(durationFound.uuid, durationData);
+      result.duration = durationUpdated;
+    } else {
+      result.duration = durationFound;
+    }
+
     res.locals.data = result;
     next();
   } catch (error) {
