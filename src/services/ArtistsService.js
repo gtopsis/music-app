@@ -2,14 +2,9 @@
 const models = require("../models");
 const Op = require("sequelize").Op;
 
-const retrieveArtists = async data => {
+const retrieveArtists = async () => {
   try {
-    // validate params and body
-
     let artists = await models.Artist.findAll({include: "area"});
-
-    // let areas = await models.Area.findAll({include: [models.Artist]});
-    // console.log("🚀 ~ file: ArtistsService.js ~ line 10 ~ areas", artists);
     return artists;
   } catch (error) {
     throw error;
