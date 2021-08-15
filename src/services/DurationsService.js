@@ -53,20 +53,8 @@ const updateDuration = async (uuid, data) => {
   }
 };
 
-const deleteDuration = async uuid => {
-  try {
-    let res = await models.Duration.destroy({
-      where: {uuid: uuid},
-    });
-    return res;
-  } catch (error) {
-    throw error;
-  }
-};
-
 module.exports = {
   createDuration,
   retrieveDurationByUUID,
   updateDuration,
-  deleteDuration,
 };
