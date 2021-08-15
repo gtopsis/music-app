@@ -20,13 +20,13 @@ const createArtist = async (req, res, next) => {
   try {
     // validate params and body
     const {name, shortName, gender, area} = req.body;
-    const foundArtist = await models.Artist.findOne({
+    const artistFound = await models.Artist.findOne({
       where: {
         shortName,
       },
     });
 
-    if (foundArtist) {
+    if (artistFound) {
       throw {status: 409};
     }
 
@@ -35,7 +35,6 @@ const createArtist = async (req, res, next) => {
     res.locals.data = {...newArtist.dataValues, area: newArea};
     next();
   } catch (error) {
-    console.log("🚀 ~ file: ArtistsController.js ~ line 47 ~ createArtist ~ error", error);
     next(error);
   }
 };
@@ -44,13 +43,13 @@ const retrieveArtist = async (req, res, next) => {
   try {
     // validate params and body
     const uuid = req.params.artistId;
-    const foundArtist = await ArtistsService.retrieveArtist({uuid});
+    const artistFound = await ArtistsService.retrieveArtist({uuid});
 
-    if (!foundArtist) {
+    if (!artistFound) {
       throw {status: 404};
     }
 
-    res.locals.data = foundArtist;
+    res.locals.data = artistFound;
     next();
   } catch (error) {
     next(error);
@@ -63,9 +62,9 @@ const updateArtist = async (req, res, next) => {
     const uuid = req.params.artistId;
     const {name, shortName, gender, area} = req.body;
 
-    const foundArtist = await ArtistsService.retrieveArtist({uuid});
+    const artistFound = await ArtistsService.retrieveArtist({uuid});
 
-    if (!foundArtist) {
+    if (!artistFound) {
       throw {status: 404};
     }
 
@@ -95,9 +94,9 @@ const deleteArtist = async (req, res, next) => {
   try {
     // validate params and body
     const uuid = req.params.artistId;
-    const foundArtist = await ArtistsService.retrieveArtist({uuid});
+    const artistFound = await ArtistsService.retrieveArtist({uuid});
 
-    if (!foundArtist) {
+    if (!artistFound) {
       throw {status: 404};
     }
 
