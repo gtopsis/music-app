@@ -13,23 +13,13 @@ module.exports = {
         const minutes = durationParts.length != 0 ? durationParts.pop() : 0;
         const hours = durationParts.length != 0 ? durationParts.pop() : 0;
 
-        if (
-          seconds == "" ||
-          seconds.trim() == "" ||
-          isNaN(seconds) ||
-          minutes == "" ||
-          minutes.trim() == "" ||
-          isNaN(minutes) ||
-          hours == "" ||
-          hours.trim() == "" ||
-          isNaN(hours)
-        ) {
-          return false;
-        }
-
         const secondsInt = parseInt(seconds);
         const minutesInt = parseInt(minutes);
         const hoursInt = parseInt(hours);
+
+        if (isNaN(secondsInt) || isNaN(minutesInt) || isNaN(hoursInt)) {
+          return false;
+        }
 
         return secondsInt >= 0 && secondsInt < 60 && minutesInt >= 0 && minutesInt < 60 && hoursInt >= 0;
       },

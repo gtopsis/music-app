@@ -28,7 +28,14 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      title: {type: DataTypes.STRING, allowNull: false},
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {msg: "Track must have a title"},
+          notEmpty: {msg: "Title must not be empty"},
+        },
+      },
       position: {type: DataTypes.INTEGER, allowNull: false, validate: {min: 0}},
     },
     {

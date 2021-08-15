@@ -33,8 +33,23 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      name: {type: DataTypes.STRING, allowNull: false},
-      shortName: {type: DataTypes.STRING, allowNull: false, unique: true},
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {msg: "Artist must have a name"},
+          notEmpty: {msg: "Name must not be empty"},
+        },
+      },
+      shortName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          notNull: {msg: "Artist must have a name"},
+          notEmpty: {msg: "Name must not be empty"},
+        },
+      },
       gender: DataTypes.STRING,
     },
     {

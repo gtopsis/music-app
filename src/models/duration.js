@@ -31,27 +31,25 @@ module.exports = (sequelize, DataTypes) => {
       minutes: {type: DataTypes.INTEGER, validate: {min: 0, max: 59}},
       seconds: {type: DataTypes.INTEGER, validate: {min: 0, max: 59}, allowNull: false},
     },
-    // {
-    //   validate: {
-    //     completeDuration() {
-    //       let isIncomplete = false;
-    //       if (this.hours !== null && (this.minutes == null || this.seconds == null)) {
-    //         isIncomplete = true;
-    //       } else if (this.minutes !== null && this.seconds == null) {
-    //         isIncomplete = true;
-    //       } else if (this.seconds !== null && (this.hours == null || this.seconds == null)) {
-    //         isIncomplete = true;
-    //       }
-
-    //       if (isIncomplete == true) {
-    //         throw new Error("Not valid format of field duration");
-    //       }
-    //     },
-    //   },
-    // },
     {
       sequelize,
       modelName: "Duration",
+      validate: {
+        completeDuration() {
+          let isIncomplete = false;
+          if (this.hours !== null && (this.minutes == null || this.seconds == null)) {
+            isIncomplete = true;
+          } else if (this.minutes !== null && this.seconds == null) {
+            isIncomplete = true;
+          } else if (this.seconds !== null && (this.hours == null || this.seconds == null)) {
+            isIncomplete = true;
+          }
+
+          if (isIncomplete == true) {
+            throw new Error("Not valid format of field duration");
+          }
+        },
+      },
     }
   );
   return Duration;
