@@ -100,7 +100,7 @@ const deleteArtist = async (req, res, next) => {
       throw {status: 404};
     }
 
-    let result = ArtistsService.deleteArtist(uuid);
+    let result = await ArtistsService.deleteArtist(uuid);
 
     res.locals.status = 204;
     next();
