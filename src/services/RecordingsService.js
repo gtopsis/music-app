@@ -71,10 +71,38 @@ const deleteRecording = async uuid => {
   }
 };
 
+const calcRecordingTotalDuration = async recordingUUID => {
+  try {
+    // get list of recording's tracks
+    let recordingTracksUUID = await models.Track.findAll({attributes: ["uuid"], where: {recordingUUID: recordingUUID}});
+
+    recordingTracksUUID = recordingTracksUUID.map(track => track.uuid);
+
+    let hours = await models.Duration.sum("hours", {where: {trackUUID: {[Op.in]: recordingTracksUUID}}});
+    let minutes = await models.Duration.sum("minutes", {where: {trackUUID: {[Op.in]: recordingTracksUUID}}});
+    let seconds = await models.Duration.sum("seconds", {where: {trackUUID: {[Op.in]: recordingTracksUUID}}});
+
+    // normalize values of hours, minutes, seconds
+    let finalSeconds = seconds % 60;
+    let finalMinutes = (Math.floor(seconds / 60) + (minutes % 60)) % 60;
+    let finalHours = hours + Math.floor((Math.floor(seconds / 60) + (minutes % 60)) / 60);
+
+    console.log(`Recording duration ${finalHours}h, ${finalMinutes}m, ${finalSeconds}s`);
+    return {
+      hours: finalHours,
+      minutes: finalMinutes,
+      seconds: finalSeconds,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   retrieveRecordings,
   createRecording,
   retrieveRecording,
   updateRecording,
   deleteRecording,
+  calcRecordingTotalDuration,
 };

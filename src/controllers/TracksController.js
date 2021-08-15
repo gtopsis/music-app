@@ -37,13 +37,28 @@ const createTrack = async (req, res, next) => {
       throw {status: 409};
     }
 
+    // create track
     let trackData = {title, position};
     let newTrack = await TracksService.createTrack(trackData, recordingFound.uuid);
 
+    // create track's duration
     let durationData = {hours, minutes, seconds};
-    let newDuration = await DurationsService.createDuration(durationData, {trackUUID: newTrack.uuid});
+    let newTrackDuration = await DurationsService.createDuration(durationData, {trackUUID: newTrack.uuid});
 
-    res.locals.data = {...newTrack.dataValues, duration: newDuration};
+    // calc recording's total duration
+    let recordingTotalDuration = await RecordingsService.calcRecordingTotalDuration(recordingFound.uuid);
+
+    // update recording's total duration
+    let recordingOldDuration = await DurationsService.retrieveDuration({recordingUUID: recordingFound.uuid});
+    if (!recordingOldDuration) {
+      throw {status: 500};
+    }
+
+    let recordingDurationUpdated = await DurationsService.updateDuration(recordingOldDuration.uuid, {
+      ...recordingTotalDuration,
+    });
+
+    res.locals.data = {...newTrack.dataValues, duration: newTrackDuration};
     next();
   } catch (error) {
     next(error);

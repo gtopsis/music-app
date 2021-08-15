@@ -12,9 +12,11 @@ const createDuration = async (data, foreignKey) => {
     let finalDuration = {};
     if (!isNaN(hoursInt)) {
       finalDuration.hours = hoursInt;
-    } else if (!isNaN(minutesInt)) {
+    }
+    if (!isNaN(minutesInt)) {
       finalDuration.minutes = minutesInt;
-    } else if (!isNaN(secondsInt)) {
+    }
+    if (!isNaN(secondsInt)) {
       finalDuration.seconds = secondsInt;
     }
 

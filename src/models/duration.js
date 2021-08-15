@@ -34,22 +34,22 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Duration",
-      validate: {
-        completeDuration() {
-          let isIncomplete = false;
-          if (this.hours !== null && (this.minutes == null || this.seconds == null)) {
-            isIncomplete = true;
-          } else if (this.minutes !== null && this.seconds == null) {
-            isIncomplete = true;
-          } else if (this.seconds !== null && (this.hours == null || this.seconds == null)) {
-            isIncomplete = true;
-          }
+      // validate: {
+      //   completeDuration() {
+      //     let isIncomplete = false;
+      //     if (this.hours !== null && (this.minutes == null || this.seconds == null)) {
+      //       isIncomplete = true;
+      //     } else if (this.minutes !== null && this.seconds == null) {
+      //       isIncomplete = true;
+      //     } else if (this.seconds !== null && (this.hours == null || this.seconds == null)) {
+      //       isIncomplete = true;
+      //     }
 
-          if (isIncomplete == true) {
-            throw new Error("Not valid format of field duration");
-          }
-        },
-      },
+      //     if (isIncomplete == true) {
+      //       throw new Error("Not valid format of field duration");
+      //     }
+      //   },
+      // },
     }
   );
   return Duration;
