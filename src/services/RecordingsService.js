@@ -11,10 +11,9 @@ const retrieveRecordings = async () => {
   }
 };
 
-const createRecording = async (title, artistUUID) => {
+const createRecording = async (data, artistUUID) => {
   try {
-    // validate params and body
-    let newRecording = await models.Recording.create({title, artistUUID});
+    let newRecording = await models.Recording.create({...data, artistUUID});
     return newRecording;
   } catch (error) {
     throw error;
