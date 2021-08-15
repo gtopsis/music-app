@@ -12,4 +12,5 @@ properties:
     example: 0
   duration:
     type: string
-    example: female
+    format: duration
+    example: "12:14"

@@ -6,7 +6,7 @@ properties:
     type: string
   gender:
     type: string
-    example: woman
+    example: female
   area:
     type: object
     properties:

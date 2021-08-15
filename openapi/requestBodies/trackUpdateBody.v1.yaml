@@ -11,4 +11,5 @@ properties:
     example: 0
   duration:
     type: string
+    format: duration
     example: "05:15"

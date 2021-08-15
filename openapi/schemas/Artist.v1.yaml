@@ -11,7 +11,7 @@ properties:
     example: best-artist
   gender:
     type: string
-    example: woman
+    example: female
   area:
     type: object
     properties:

@@ -9,6 +9,8 @@ const OpenApiValidator = require("express-openapi-validator");
 const app = require("./app");
 const config = require("./config");
 const logger = require("./logger");
+const openapiFormats = require("./utils/openapi-data-formats");
+
 const ResponseSuccess = require("./middlewares/response-success");
 const ResponseError = require("./middlewares/response-error");
 
@@ -45,12 +47,12 @@ app.use(
     validateRequests: true, // (default)
     validateResponses: false, // false by default
     validateFormats: "full",
-    // formats: openapiFormats.formats,
+    formats: openapiFormats.formats,
     operationHandlers: path.join(__dirname, "controllers"),
   })
 );
 
-// error response
+// middlewares for response
 app.use(ResponseSuccess);
 app.use(ResponseError);
 

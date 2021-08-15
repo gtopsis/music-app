@@ -75,7 +75,7 @@
                       },
                       "gender": {
                         "type": "string",
-                        "example": "woman"
+                        "example": "female"
                       },
                       "area": {
                         "type": "object",
@@ -141,7 +141,7 @@
                   },
                   "gender": {
                     "type": "string",
-                    "example": "woman"
+                    "example": "female"
                   },
                   "area": {
                     "type": "object",
@@ -194,7 +194,7 @@
                     },
                     "gender": {
                       "type": "string",
-                      "example": "woman"
+                      "example": "female"
                     },
                     "area": {
                       "type": "object",
@@ -272,7 +272,7 @@
                     },
                     "gender": {
                       "type": "string",
-                      "example": "woman"
+                      "example": "female"
                     },
                     "area": {
                       "type": "object",
@@ -346,7 +346,7 @@
                   },
                   "gender": {
                     "type": "string",
-                    "example": "woman"
+                    "example": "female"
                   },
                   "area": {
                     "type": "object",
@@ -395,7 +395,7 @@
                     },
                     "gender": {
                       "type": "string",
-                      "example": "woman"
+                      "example": "female"
                     },
                     "area": {
                       "type": "object",
@@ -838,7 +838,8 @@
                   },
                   "duration": {
                     "type": "string",
-                    "example": "female"
+                    "format": "duration",
+                    "example": "12:14"
                   }
                 }
               }
@@ -867,7 +868,8 @@
                     },
                     "duration": {
                       "type": "string",
-                      "example": "female"
+                      "format": "duration",
+                      "example": "12:14"
                     }
                   }
                 }
@@ -930,7 +932,8 @@
                     },
                     "duration": {
                       "type": "string",
-                      "example": "female"
+                      "format": "duration",
+                      "example": "12:14"
                     }
                   }
                 }
@@ -993,6 +996,7 @@
                   },
                   "duration": {
                     "type": "string",
+                    "format": "duration",
                     "example": "05:15"
                   }
                 }
@@ -1022,7 +1026,8 @@
                     },
                     "duration": {
                       "type": "string",
-                      "example": "female"
+                      "format": "duration",
+                      "example": "12:14"
                     }
                   }
                 }

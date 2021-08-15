@@ -58,7 +58,7 @@ paths:
                       example: best-artist
                     gender:
                       type: string
-                      example: woman
+                      example: female
                     area:
                       type: object
                       properties:
@@ -104,7 +104,7 @@ paths:
                   example: best-artist
                 gender:
                   type: string
-                  example: woman
+                  example: female
                 area:
                   type: object
                   properties:
@@ -142,7 +142,7 @@ paths:
                     example: best-artist
                   gender:
                     type: string
-                    example: woman
+                    example: female
                   area:
                     type: object
                     properties:
@@ -196,7 +196,7 @@ paths:
                     example: best-artist
                   gender:
                     type: string
-                    example: woman
+                    example: female
                   area:
                     type: object
                     properties:
@@ -246,7 +246,7 @@ paths:
                   type: string
                 gender:
                   type: string
-                  example: woman
+                  example: female
                 area:
                   type: object
                   properties:
@@ -281,7 +281,7 @@ paths:
                     example: best-artist
                   gender:
                     type: string
-                    example: woman
+                    example: female
                   area:
                     type: object
                     properties:
@@ -583,7 +583,8 @@ paths:
                   example: 0
                 duration:
                   type: string
-                  example: female
+                  format: duration
+                  example: '12:14'
       responses:
         '201':
           description: New Recording
@@ -604,7 +605,8 @@ paths:
                     example: 0
                   duration:
                     type: string
-                    example: female
+                    format: duration
+                    example: '12:14'
         default:
           description: Unexpected error
   '/v1/recordings/{recordingId}/tracks/{trackId}':
@@ -647,7 +649,8 @@ paths:
                     example: 0
                   duration:
                     type: string
-                    example: female
+                    format: duration
+                    example: '12:14'
         '404':
           description: The specified resource was not found.
         default:
@@ -690,6 +693,7 @@ paths:
                   example: 0
                 duration:
                   type: string
+                  format: duration
                   example: '05:15'
       responses:
         '200':
@@ -711,7 +715,8 @@ paths:
                     example: 0
                   duration:
                     type: string
-                    example: female
+                    format: duration
+                    example: '12:14'
         '404':
           description: The specified resource was not found.
         default:
