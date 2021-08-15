@@ -111,18 +111,8 @@ const updateTrack = async (req, res, next) => {
       }
     }
 
-    let trackUpdated;
-    if (title != undefined || position != undefined) {
-      let trackData = {title, position};
-      trackUpdated = await TracksService.trackDataTrack(trackId, trackData);
-    }
-
-    let result = {};
-    if (!trackUpdated) {
-      result = trackUpdated.dataValues;
-    } else {
-      result = trackFound.dataValues;
-    }
+    let trackData = {title, position};
+    let trackUpdated = await TracksService.trackDataTrack(trackId, trackData);
 
     let durationFound = await DurationsService.retrieveDuration({
       recordingUUID: recordingFound.uuid,
@@ -130,15 +120,11 @@ const updateTrack = async (req, res, next) => {
     if (!durationFound) {
       throw {staus: 500};
     }
-    if (seconds != undefined || minutes != undefined || hours != undefined) {
-      let durationData = {hours, minutes, seconds};
-      let durationUpdated = await DurationsService.updateDuration(durationFound.uuid, durationData);
-      result.duration = durationUpdated;
-    } else {
-      result.duration = durationFound;
-    }
 
-    res.locals.data = result;
+    let durationData = {hours, minutes, seconds};
+    let durationUpdated = await DurationsService.updateDuration(durationFound.uuid, durationData);
+
+    res.locals.data = {...trackUpdated.dataValues, duration: durationUpdated};
     next();
   } catch (error) {
     next(error);

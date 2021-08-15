@@ -5,9 +5,7 @@ const Op = require("sequelize").Op;
 const retrieveTracks = async () => {
   try {
     let tracks = await models.Track.findAll({
-      include: [
-        /*'duration'*/
-      ],
+      include: ["duration"],
     });
     return tracks;
   } catch (error) {
@@ -17,8 +15,7 @@ const retrieveTracks = async () => {
 
 const createTrack = async (data, recordingUUID) => {
   try {
-    const {title, position, duration} = data;
-    // validate params and body
+    const {title, position} = data;
     let newTrack = await models.Track.create({title, position, recordingUUID});
     return newTrack;
   } catch (error) {
@@ -30,10 +27,7 @@ const retrieveTrack = async query => {
   try {
     const foundTrack = await models.Track.findOne({
       where: query,
-      // include: "area",
-      include: [
-        /*'duration'*/
-      ],
+      include: ["duration"],
     });
 
     return foundTrack;
@@ -57,8 +51,8 @@ const updateTrack = async (uuid, data) => {
       };
     }
 
-    trackFound.title = title;
-    trackFound.position = position;
+    trackFound.title = title != undefined ? title : trackFound.title;
+    trackFound.position = position != undefined ? parseInt(position) : trackFound.position;
 
     let trackUpdated = await trackFound.save();
     return trackUpdated;

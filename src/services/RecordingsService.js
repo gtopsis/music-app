@@ -4,7 +4,9 @@ const Op = require("sequelize").Op;
 
 const retrieveRecordings = async () => {
   try {
-    let recordings = await models.Recording.findAll({include: ["tracks"]});
+    let recordings = await models.Recording.findAll({
+      include: [{model: models.Track, as: "tracks", include: "duration"}, "duration"],
+    });
     return recordings;
   } catch (error) {
     throw error;
@@ -25,7 +27,7 @@ const retrieveRecording = async query => {
     const foundRecording = await models.Recording.findOne({
       where: query,
       // include: "area",
-      include: ["tracks"],
+      include: [{model: models.Track, as: "tracks", include: "duration"}, "duration"],
     });
 
     return foundRecording;
