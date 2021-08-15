@@ -38,12 +38,7 @@ const createRecording = async (req, res, next) => {
     }
 
     // check if the artist has an album with the same title
-    const recordingFound = await models.Recording.findOne({
-      where: {
-        title,
-        artistUUID: artistId,
-      },
-    });
+    const recordingFound = await RecordingsService.retrieveRecording({title, artistUUID: artistId});
 
     if (recordingFound) {
       throw {status: 409};
