@@ -1,39 +1,72 @@
 /* eslint-disable no-useless-catch */
-const retrieveRecordings = async data => {
+const models = require("../models");
+const Op = require("sequelize").Op;
+
+const retrieveRecordings = async () => {
   try {
-    // validate params and body
+    let recordings = await models.Recording.findAll({include: ["artist" /*'tracks'*/]});
+    return recordings;
   } catch (error) {
     throw error;
   }
 };
 
-const createRecording = async data => {
+const createRecording = async (title, artistUUID) => {
   try {
     // validate params and body
+    let newRecording = await models.Recording.create({title, artistUUID});
+    return newRecording;
   } catch (error) {
     throw error;
   }
 };
 
-const retrieveRecording = async data => {
+const retrieveRecording = async query => {
   try {
-    // validate params and body
+    const foundRecording = await models.Recording.findOne({
+      where: query,
+      // include: "area",
+      include: ["artist" /*'tracks'*/],
+    });
+
+    return foundRecording;
   } catch (error) {
     throw error;
   }
 };
 
-const updateRecording = async data => {
+const updateRecording = async (uuid, data) => {
   try {
-    // validate params and body
+    const {name, shortName, gender, area} = data;
+    const RecordingFound = await models.Recording.findOne({
+      where: {
+        uuid,
+      },
+    });
+
+    if (!RecordingFound) {
+      throw {
+        status: 404,
+      };
+    }
+
+    RecordingFound.name = name;
+    RecordingFound.shortName = shortName;
+    RecordingFound.gender = gender;
+
+    let RecordingUpdated = await RecordingFound.save();
+    return RecordingUpdated;
   } catch (error) {
     throw error;
   }
 };
 
-const deleteRecording = async data => {
+const deleteRecording = async uuid => {
   try {
-    // validate params and body
+    let res = await models.Recording.destroy({
+      where: {uuid: uuid},
+    });
+    return res;
   } catch (error) {
     throw error;
   }
