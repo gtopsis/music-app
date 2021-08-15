@@ -97,6 +97,7 @@ const updateRecording = async (req, res, next) => {
   try {
     // validate params and body
     const {recordingId, artistId} = req.params;
+    const {title} = req.body;
 
     const artistFound = await models.Artist.findOne({
       where: {
@@ -108,29 +109,25 @@ const updateRecording = async (req, res, next) => {
       throw {status: 400};
     }
 
-    const uuid = req.params.recordingId;
-    const {name, shortName, gender, area} = req.body;
-
-    const recordingFound = await RecordingsService.retrieveRecording({uuid});
+    const recordingFound = await RecordingsService.retrieveRecording({uuid: recordingId});
 
     if (!recordingFound) {
       throw {status: 404};
     }
 
-    // check if new shortName is already occupied by someone else
-    const recordingWithSameShortName = await RecordingsService.retrieveRecording({
-      uuid: {[Op.ne]: uuid},
-      shortName,
+    // check if new title is already occupied by a different album of the SAME artist
+    const recordingWithSameShortTitle = await RecordingsService.retrieveRecording({
+      uuid: {[Op.ne]: recordingId},
+      title,
+      artistUUID: artistId,
     });
 
-    if (recordingWithSameShortName) {
+    if (recordingWithSameShortTitle) {
       throw {status: 409};
     }
 
-    let update = {name, shortName, gender, area};
-    let result = await RecordingsService.updateRecording(uuid, update);
-
-    // TODO update area details
+    let update = {title};
+    let result = await RecordingsService.updateRecording(recordingId, update);
 
     res.locals.data = result;
     next();
@@ -154,14 +151,13 @@ const deleteRecording = async (req, res, next) => {
       throw {status: 400};
     }
 
-    const uuid = req.params.recordingId;
-    const recordingFound = await RecordingsService.retrieveRecording({uuid});
+    const recordingFound = await RecordingsService.retrieveRecording({uuid: recordingId});
 
     if (!recordingFound) {
       throw {status: 404};
     }
 
-    let result = RecordingsService.deleteRecording(uuid);
+    let result = await RecordingsService.deleteRecording(recordingId);
 
     res.locals.status = 204;
     next();

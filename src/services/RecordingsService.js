@@ -37,25 +37,23 @@ const retrieveRecording = async query => {
 
 const updateRecording = async (uuid, data) => {
   try {
-    const {name, shortName, gender, area} = data;
-    const RecordingFound = await models.Recording.findOne({
+    const {title} = data;
+    const recordingFound = await models.Recording.findOne({
       where: {
         uuid,
       },
     });
 
-    if (!RecordingFound) {
+    if (!recordingFound) {
       throw {
         status: 404,
       };
     }
 
-    RecordingFound.name = name;
-    RecordingFound.shortName = shortName;
-    RecordingFound.gender = gender;
+    recordingFound.title = title;
 
-    let RecordingUpdated = await RecordingFound.save();
-    return RecordingUpdated;
+    let recordingUpdated = await recordingFound.save();
+    return recordingUpdated;
   } catch (error) {
     throw error;
   }
