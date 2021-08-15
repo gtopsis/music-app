@@ -48,10 +48,10 @@ const updateArea = async (uuid, data) => {
       },
     });
 
-    foundArea.address = address;
-    foundArea.city = city;
-    foundArea.country = country;
-    foundArea.zipCode = zipCode;
+    foundArea.address = address != undefined ? address : foundArea.address;
+    foundArea.city = city != undefined ? city : foundArea.city;
+    foundArea.country = country != undefined ? country : foundArea.country;
+    foundArea.zipCode = zipCode != undefined ? zipCode : foundArea.zipCode;
 
     let newArea = await foundArea.save();
     return newArea;

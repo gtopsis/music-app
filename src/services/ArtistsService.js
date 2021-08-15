@@ -14,7 +14,7 @@ const retrieveArtists = async () => {
 const createArtist = async data => {
   try {
     // validate params and body
-    const {name, shortName, gender, area} = data;
+    const {name, shortName, gender} = data;
     let newArtist = await models.Artist.create({name, shortName, gender});
     return newArtist;
   } catch (error) {
@@ -50,9 +50,9 @@ const updateArtist = async (uuid, data) => {
       };
     }
 
-    artistFound.name = name;
-    artistFound.shortName = shortName;
-    artistFound.gender = gender;
+    artistFound.name = name != undefined ? name : artistFound.name;
+    artistFound.gender = gender != undefined ? gender : artistFound.name;
+    artistFound.shortName = shortName != undefined ? shortName : artistFound.shortName;
 
     let artistUpdated = await artistFound.save();
     return artistUpdated;
