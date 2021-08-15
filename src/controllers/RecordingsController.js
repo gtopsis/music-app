@@ -50,6 +50,7 @@ const createRecording = async (req, res, next) => {
     let foreignKey = {recordingUUID: newRecording.uuid};
     let newDuration = await DurationsService.createDuration(durationData, foreignKey);
 
+    res.locals.status = 201;
     res.locals.data = {...newRecording.dataValues, duration: newDuration};
     next();
   } catch (error) {

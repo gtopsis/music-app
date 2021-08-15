@@ -58,6 +58,7 @@ const createTrack = async (req, res, next) => {
       ...recordingTotalDuration,
     });
 
+    res.locals.status = 201;
     res.locals.data = {...newTrack.dataValues, duration: newTrackDuration};
     next();
   } catch (error) {

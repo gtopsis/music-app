@@ -38,6 +38,7 @@ const createArtist = async (req, res, next) => {
     let areaData = {city, address, country, zipCode};
     let newArea = await AreasService.createArea(areaData, newArtist.uuid);
 
+    res.locals.status = 201;
     res.locals.data = {...newArtist.dataValues, area: newArea};
     next();
   } catch (error) {
