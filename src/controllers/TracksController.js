@@ -144,6 +144,19 @@ const updateTrack = async (req, res, next) => {
 
       let durationData = {hours, minutes, seconds};
       durationUpdated = await DurationsService.updateDuration(durationFound.uuid, durationData);
+
+      // calc recording's total duration
+      let recordingTotalDuration = await RecordingsService.calcRecordingTotalDuration(recordingFound.uuid);
+
+      // update recording's total duration
+      let recordingOldDuration = await DurationsService.retrieveDuration({recordingUUID: recordingFound.uuid});
+      if (!recordingOldDuration) {
+        throw {status: 500};
+      }
+
+      let recordingDurationUpdated = await DurationsService.updateDuration(recordingOldDuration.uuid, {
+        ...recordingTotalDuration,
+      });
     }
 
     res.locals.data = {...trackUpdated.dataValues, duration: durationUpdated || durationFound};
@@ -166,11 +179,24 @@ const deleteTrack = async (req, res, next) => {
 
     const trackFound = await TracksService.retrieveTrack({uuid: trackId});
 
+    let result = await TracksService.deleteTrack(trackId);
+
+    // calc recording's total duration
+    let recordingTotalDuration = await RecordingsService.calcRecordingTotalDuration(recordingFound.uuid);
+
+    // update recording's total duration
+    let recordingOldDuration = await DurationsService.retrieveDuration({recordingUUID: recordingFound.uuid});
+    if (!recordingOldDuration) {
+      throw {status: 500};
+    }
+
+    let recordingDurationUpdated = await DurationsService.updateDuration(recordingOldDuration.uuid, {
+      ...recordingTotalDuration,
+    });
+
     if (!trackFound) {
       throw {status: 404};
     }
-
-    let result = await TracksService.deleteTrack(trackId);
 
     res.locals.status = 204;
     next();
