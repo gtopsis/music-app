@@ -8,11 +8,11 @@ const Op = require("sequelize").Op;
 const retrieveRecordings = async (req, res, next) => {
   try {
     // validate params and body
-    const artistUUID = req.params.artistId;
+    const artistId = req.params.artistId;
 
     const artistFound = await models.Artist.findOne({
       where: {
-        uuid: artistUUID,
+        uuid: artistId,
       },
     });
 
@@ -32,12 +32,12 @@ const retrieveRecordings = async (req, res, next) => {
 const createRecording = async (req, res, next) => {
   try {
     // validate params and body
-    const artistUUID = req.params.artistId;
+    const artistId = req.params.artistId;
     const {title} = req.body;
 
     const artistFound = await models.Artist.findOne({
       where: {
-        uuid: artistUUID,
+        uuid: artistId,
       },
     });
 
@@ -49,7 +49,7 @@ const createRecording = async (req, res, next) => {
     const recordingFound = await models.Recording.findOne({
       where: {
         title,
-        artistUUID,
+        artistUUID: artistId,
       },
     });
 
