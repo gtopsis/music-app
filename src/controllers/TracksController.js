@@ -14,7 +14,8 @@ const createTrack = async (req, res, next) => {
     let minutes = durationParts.length != 0 ? durationParts.pop() : 0;
     let hours = durationParts.length != 0 ? durationParts.pop() : 0;
 
-    if (durationParts.length == 0) {
+    // error duration has a wrong format
+    if (durationParts.length != 0) {
       throw {
         status: 400,
       };
@@ -26,13 +27,15 @@ const createTrack = async (req, res, next) => {
       throw {status: 400};
     }
 
-    const trackFound = await TracksService.retrieveTrack({title, recordingUUID: recordingId});
+    let query = {
+      [Op.or]: [{title}, {position}],
+      recordingUUID: recordingId,
+    };
+    const trackFound = await TracksService.retrieveTrack(query);
 
     if (trackFound) {
       throw {status: 409};
     }
-
-    // TODO check if a track in the same album has the same position
 
     let trackData = {title, position};
     let newTrack = await TracksService.createTrack(trackData, recordingFound.uuid);
@@ -77,17 +80,6 @@ const updateTrack = async (req, res, next) => {
     const {trackId, recordingId} = req.params;
     const {title, duration, position} = req.body;
 
-    let durationParts = duration.split(":");
-    let seconds = durationParts.length != 0 ? durationParts.pop() : 0;
-    let minutes = durationParts.length != 0 ? durationParts.pop() : 0;
-    let hours = durationParts.length != 0 ? durationParts.pop() : 0;
-
-    if (durationParts.length == 0) {
-      throw {
-        status: 400,
-      };
-    }
-
     const recordingFound = await RecordingsService.retrieveRecording({uuid: recordingId});
     if (!recordingFound) {
       throw {status: 400};
@@ -99,10 +91,10 @@ const updateTrack = async (req, res, next) => {
     }
 
     if (title != undefined && title != null) {
-      // check if new title is already occupied by a different album of the SAME recording
+      // check if NEW title OR position is already occupied by a DIFFERENT trsck of the SAME recording
       const trackWithSameTitle = await TracksService.retrieveTrack({
         uuid: {[Op.ne]: trackId},
-        title,
+        [Op.or]: [{title}, {position}],
         recordingUUID: recordingId,
       });
 
@@ -112,7 +104,7 @@ const updateTrack = async (req, res, next) => {
     }
 
     let trackData = {title, position};
-    let trackUpdated = await TracksService.trackDataTrack(trackId, trackData);
+    let trackUpdated = await TracksService.updateTrack(trackId, trackData);
 
     let durationFound = await DurationsService.retrieveDuration({
       recordingUUID: recordingFound.uuid,
@@ -121,10 +113,25 @@ const updateTrack = async (req, res, next) => {
       throw {staus: 500};
     }
 
-    let durationData = {hours, minutes, seconds};
-    let durationUpdated = await DurationsService.updateDuration(durationFound.uuid, durationData);
+    let durationUpdated;
+    if (duration) {
+      let durationParts = duration.split(":");
+      let seconds = durationParts.length != 0 ? durationParts.pop() : 0;
+      let minutes = durationParts.length != 0 ? durationParts.pop() : 0;
+      let hours = durationParts.length != 0 ? durationParts.pop() : 0;
 
-    res.locals.data = {...trackUpdated.dataValues, duration: durationUpdated};
+      // error duration has a wrong format
+      if (durationParts.length != 0) {
+        throw {
+          status: 400,
+        };
+      }
+
+      let durationData = {hours, minutes, seconds};
+      durationUpdated = await DurationsService.updateDuration(durationFound.uuid, durationData);
+    }
+
+    res.locals.data = {...trackUpdated.dataValues, duration: durationUpdated || durationFound};
     next();
   } catch (error) {
     next(error);
