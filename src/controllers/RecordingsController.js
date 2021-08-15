@@ -10,11 +10,7 @@ const retrieveRecordings = async (req, res, next) => {
     // validate params and body
     const artistId = req.params.artistId;
 
-    const artistFound = await models.Artist.findOne({
-      where: {
-        uuid: artistId,
-      },
-    });
+    const artistFound = await ArtistsService.retrieveRecording({uuid: artistId});
 
     if (!artistFound) {
       throw {status: 400};
@@ -35,11 +31,7 @@ const createRecording = async (req, res, next) => {
     const artistId = req.params.artistId;
     const {title} = req.body;
 
-    const artistFound = await models.Artist.findOne({
-      where: {
-        uuid: artistId,
-      },
-    });
+    const artistFound = await ArtistsService.retrieveRecording({uuid: artistId});
 
     if (!artistFound) {
       throw {status: 400};
@@ -70,11 +62,7 @@ const retrieveRecording = async (req, res, next) => {
     // validate params and body
     const {recordingId, artistId} = req.params;
 
-    const artistFound = await models.Artist.findOne({
-      where: {
-        uuid: artistId,
-      },
-    });
+    const artistFound = await ArtistsService.retrieveRecording({uuid: artistId});
 
     if (!artistFound) {
       throw {status: 400};
@@ -99,11 +87,7 @@ const updateRecording = async (req, res, next) => {
     const {recordingId, artistId} = req.params;
     const {title} = req.body;
 
-    const artistFound = await models.Artist.findOne({
-      where: {
-        uuid: artistId,
-      },
-    });
+    const artistFound = await ArtistsService.retrieveRecording({uuid: artistId});
 
     if (!artistFound) {
       throw {status: 400};
@@ -141,11 +125,7 @@ const deleteRecording = async (req, res, next) => {
     // validate params and body
     const {recordingId, artistId} = req.params;
 
-    const artistFound = await models.Artist.findOne({
-      where: {
-        uuid: artistId,
-      },
-    });
+    const artistFound = await ArtistsService.retrieveRecording({uuid: artistId});
 
     if (!artistFound) {
       throw {status: 400};
