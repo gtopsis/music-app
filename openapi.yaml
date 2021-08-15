@@ -707,10 +707,6 @@ paths:
                   type: string
                   format: duration
                   example: '05:15'
-              required:
-                - title
-                - position
-                - duration
       responses:
         '200':
           description: New data of a Track

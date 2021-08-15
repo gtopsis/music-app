@@ -80,7 +80,7 @@ const updateTrack = async (req, res, next) => {
     let minutes = durationParts.length != 0 ? durationParts.pop() : 0;
     let hours = durationParts.length != 0 ? durationParts.pop() : 0;
 
-    if (durationParts.length != 0) {
+    if (durationParts.length == 0) {
       throw {
         status: 400,
       };
@@ -111,8 +111,22 @@ const updateTrack = async (req, res, next) => {
       }
     }
 
-    let update = {title, position};
-    let result = await TracksService.updateTrack(trackId, update);
+    let trackUpdated;
+    if (title != undefined || position != undefined) {
+      let trackData = {title, position};
+      trackUpdated = await TracksService.trackDataTrack(trackId, trackData);
+    }
+
+    let secondsInt = parseInt(seconds);
+    let minutesInt = parseInt(minutes);
+    let hoursInt = parseInt(hours);
+
+    let result = {};
+    if (!trackUpdated) {
+      result = {...trackUpdated.dataValues};
+    } else {
+      result = {...trackFound.dataValues};
+    }
 
     // let durationUpdated = await DurationsService.updateDuration();
     res.locals.data = result;

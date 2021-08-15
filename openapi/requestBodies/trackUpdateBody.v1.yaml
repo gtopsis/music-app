@@ -13,8 +13,3 @@ properties:
     type: string
     format: duration
     example: "05:15"
-
-required:
-  - title
-  - position
-  - duration
