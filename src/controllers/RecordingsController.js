@@ -1,6 +1,7 @@
 // const DurationService = require("../services/DurationService");
 const RecordingsService = require("../services/RecordingsService");
 const ArtistsService = require("../services/ArtistsService");
+const DurationsService = require("../services/DurationsService");
 const Op = require("sequelize").Op;
 
 const retrieveRecordings = async (req, res, next) => {
@@ -43,7 +44,12 @@ const createRecording = async (req, res, next) => {
     }
 
     let newRecording = await RecordingsService.createRecording(title, artistFound.uuid);
-    res.locals.data = {...newRecording.dataValues, artist: artistFound.dataValues};
+    let newDuration = await DurationsService.createDuration(
+      {hours: 0, minutes: 0, seconds: 0},
+      {recordingUUID: newRecording.uuid}
+    );
+
+    res.locals.data = {...newRecording.dataValues, duration: newDuration};
     next();
   } catch (error) {
     next(error);

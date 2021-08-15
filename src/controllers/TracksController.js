@@ -1,6 +1,7 @@
 // const DurationService = require("../services/DurationService");
 const TracksService = require("../services/TracksService");
 const RecordingsService = require("../services/RecordingsService");
+const DurationsService = require("../services/DurationsService");
 const Op = require("sequelize").Op;
 
 // const retrieveTracks = async (req, res, next) => {
@@ -29,6 +30,17 @@ const createTrack = async (req, res, next) => {
     const recordingId = req.params.recordingId;
     const {title, position, duration} = req.body;
 
+    let durationParts = duration.split(":");
+    let seconds = durationParts.length != 0 ? durationParts.pop() : 0;
+    let minutes = durationParts.length != 0 ? durationParts.pop() : 0;
+    let hours = durationParts.length != 0 ? durationParts.pop() : 0;
+
+    if (durationParts.length != 0) {
+      throw {
+        status: 400,
+      };
+    }
+
     const recordingFound = await RecordingsService.retrieveRecording({uuid: recordingId});
 
     if (!recordingFound) {
@@ -42,9 +54,11 @@ const createTrack = async (req, res, next) => {
       throw {status: 409};
     }
 
-    let data = {title, position, duration};
+    let data = {title, position};
     let newTrack = await TracksService.createTrack(data, recordingFound.uuid);
-    res.locals.data = {...newTrack.dataValues, recording: recordingFound.dataValues};
+    let newDuration = await DurationsService.createDuration({hours, minutes, seconds}, {trackUUID: newTrack.uuid});
+
+    res.locals.data = {...newTrack.dataValues, duration: newDuration};
     next();
   } catch (error) {
     next(error);
@@ -81,6 +95,17 @@ const updateTrack = async (req, res, next) => {
     const {trackId, recordingId} = req.params;
     const {title, duration, position} = req.body;
 
+    let durationParts = duration.split(":");
+    let seconds = durationParts.length != 0 ? durationParts.pop() : 0;
+    let minutes = durationParts.length != 0 ? durationParts.pop() : 0;
+    let hours = durationParts.length != 0 ? durationParts.pop() : 0;
+
+    if (durationParts.length != 0) {
+      throw {
+        status: 400,
+      };
+    }
+
     const recordingFound = await RecordingsService.retrieveRecording({uuid: recordingId});
 
     if (!recordingFound) {
@@ -109,6 +134,7 @@ const updateTrack = async (req, res, next) => {
     let update = {title, position};
     let result = await TracksService.updateTrack(trackId, update);
 
+    // let durationUpdated = await DurationsService.updateDuration();
     res.locals.data = result;
     next();
   } catch (error) {

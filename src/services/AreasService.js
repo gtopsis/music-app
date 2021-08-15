@@ -11,17 +11,16 @@ const retrieveAreas = async data => {
 const createArea = async (data, artistUuid) => {
   try {
     // validate params and body
-    const {name, shortName, gender, area} = data;
+    const {address, city, country, zipCode} = data;
 
     let newArea = await models.Area.create({
-      address: "a",
-      zipCode: "a",
-      city: "a",
-      country: "a",
+      address,
+      zipCode,
+      city,
+      country,
       artistUUID: artistUuid,
     });
 
-    // newmodels.Area.setArea(newArea);
     return newArea;
   } catch (error) {
     throw error;
@@ -44,10 +43,20 @@ const retrieveAreaByUUID = async uuid => {
 
 const updateArea = async (uuid, data) => {
   try {
-    const {name, shortName, gender, area} = data;
-    // let res = await models.Area.update({
-    //   where: {name, shortName, gender, area},
-    // });
+    const {address, city, country, zipCode} = data;
+    const foundArea = await models.Area.findOne({
+      where: {
+        uuid,
+      },
+    });
+
+    foundArea.address = address;
+    foundArea.city = city;
+    foundArea.country = country;
+    foundArea.zipCode = zipCode;
+
+    let newArea = await foundArea.save();
+    return newArea;
   } catch (error) {
     throw error;
   }

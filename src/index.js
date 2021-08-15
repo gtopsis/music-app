@@ -12,9 +12,6 @@ const logger = require("./logger");
 const ResponseSuccess = require("./middlewares/response-success");
 const ResponseError = require("./middlewares/response-error");
 
-// const dbService = require("./services/dbService");
-// const dbConnection = dbService.getDBConnection();
-// dbService.loadModels();
 const models = require("./models");
 
 // After load all models, syn database and start server
