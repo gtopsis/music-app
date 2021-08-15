@@ -2,7 +2,7 @@ const errors = {
   400: "Bad request",
   401: "Unauthorized",
   403: "Forbidden",
-  404: "Not Found",
+  404: "The specified resource was not found.",
   405: "Method Not Allowed",
   406: "Invalid Data",
   409: "Conflict - Entity already exists",
