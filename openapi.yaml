@@ -177,6 +177,7 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
       responses:
         '200':
           description: An Artist
@@ -232,6 +233,7 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
       requestBody:
         description: Data of Artist to be updated
         required: true
@@ -317,6 +319,7 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
       responses:
         '204':
           description: Successful deletion
@@ -372,6 +375,7 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
       requestBody:
         description: Data of new Artist
         required: true
@@ -426,12 +430,14 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
         - in: path
           name: recordingId
           description: Recording id
           required: true
           schema:
             type: string
+            format: uuid
       responses:
         '200':
           description: A Recording
@@ -473,12 +479,14 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
         - in: path
           name: recordingId
           description: Recording id
           required: true
           schema:
             type: string
+            format: uuid
       requestBody:
         description: Data of Recording to be updated
         required: true
@@ -536,12 +544,14 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
         - in: path
           name: recordingId
           description: Recording id
           required: true
           schema:
             type: string
+            format: uuid
       responses:
         '204':
           description: Successful deletion
@@ -563,6 +573,7 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
       requestBody:
         description: Data of new Track
         required: true
@@ -631,12 +642,14 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
         - in: path
           name: trackId
           description: Track id
           required: true
           schema:
             type: string
+            format: uuid
       responses:
         '200':
           description: A Track
@@ -680,12 +693,14 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
         - in: path
           name: trackId
           description: Track id
           required: true
           schema:
             type: string
+            format: uuid
       requestBody:
         description: Data of Track to be updated
         required: true
@@ -750,12 +765,14 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
         - in: path
           name: trackId
           description: Track id
           required: true
           schema:
             type: string
+            format: uuid
       responses:
         '204':
           description: Successful deletion

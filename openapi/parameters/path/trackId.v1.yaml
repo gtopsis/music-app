@@ -4,3 +4,4 @@ description: Track id
 required: true
 schema:
   type: string
+  format: uuid

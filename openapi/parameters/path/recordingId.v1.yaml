@@ -4,3 +4,4 @@ description: Recording id
 required: true
 schema:
   type: string
+  format: uuid
