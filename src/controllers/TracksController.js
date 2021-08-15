@@ -1,28 +1,7 @@
-// const DurationService = require("../services/DurationService");
 const TracksService = require("../services/TracksService");
 const RecordingsService = require("../services/RecordingsService");
 const DurationsService = require("../services/DurationsService");
 const Op = require("sequelize").Op;
-
-// const retrieveTracks = async (req, res, next) => {
-//   try {
-//     // validate params and body
-//     const recordingId = req.params.recordingId;
-
-//     const recordingFound = await RecordingsService.retrieveRecording({uuid: recordingId});
-
-//     if (!recordingFound) {
-//       throw {status: 400};
-//     }
-
-//     let tracks = await TracksService.retrieveTracks();
-//     res.locals.data = tracks;
-//     res.locals.status = 200;
-//     next();
-//   } catch (error) {
-//     next(error);
-//   }
-// };
 
 const createTrack = async (req, res, next) => {
   try {
@@ -47,12 +26,13 @@ const createTrack = async (req, res, next) => {
       throw {status: 400};
     }
 
-    // check if the recording has an album with the same title
     const trackFound = await TracksService.retrieveTrack({title, recordingUUID: recordingId});
 
     if (trackFound) {
       throw {status: 409};
     }
+
+    // TODO check if a track in the same album has the same position
 
     let data = {title, position};
     let newTrack = await TracksService.createTrack(data, recordingFound.uuid);

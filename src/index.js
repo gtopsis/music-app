@@ -23,8 +23,7 @@ models.sequelize
   .then(() => {
     logger.info("Connection has been established successfully.");
     app.listen(config.PORT, () => {
-      logger.info(`Server is running on port ${config.PORT}.`);
-      logger.info("Running server in mode: " + config.ENVIRONMENT);
+      logger.info(`Server is running on port ${config.PORT} and mode: ${config.ENVIRONMENT}`);
     });
   })
   .catch(error => {
@@ -36,9 +35,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json({limit: config.BODY_SIZE}));
 app.use(morgan("dev"));
-
-//OpenAPI file
-app.get("/api-doc", (req, res) => res.sendFile(path.join(__dirname, "../public/openapi.json")));
+app.use("/static", express.static("public"));
 
 // OpenAPI - express validator
 app.use(
@@ -47,7 +44,7 @@ app.use(
     validateRequests: true, // (default)
     validateResponses: false, // false by default
     validateFormats: "full",
-    formats: openapiFormats.formats,
+    formats: openapiFormats.formats, // custom data formats
     operationHandlers: path.join(__dirname, "controllers"),
   })
 );
