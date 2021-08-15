@@ -550,44 +550,6 @@ paths:
         default:
           description: Unexpected error
   '/v1/recordings/{recordingId}/tracks':
-    get:
-      summary: Retrieve all Tracks
-      tags:
-        - Tracks
-      operationId: retrieveTracks
-      x-eov-operation-handler: TracksController
-      parameters:
-        - in: path
-          name: recordingId
-          description: Recording id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: A list of Tracks
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  description: Track data model
-                  type: object
-                  properties:
-                    title:
-                      type: string
-                      minLength: 1
-                      example: John
-                    position:
-                      type: integer
-                      format: int32
-                      minimum: 0
-                      example: 0
-                    duration:
-                      type: string
-                      example: female
-        default:
-          description: Unexpected error
     post:
       summary: Create a Track
       tags:
@@ -750,6 +712,32 @@ paths:
                   duration:
                     type: string
                     example: female
+        '404':
+          description: The specified resource was not found.
+        default:
+          description: Unexpected error
+    delete:
+      summary: Delete a Track
+      tags:
+        - Tracks
+      operationId: deleteTrack
+      x-eov-operation-handler: TracksController
+      parameters:
+        - in: path
+          name: recordingId
+          description: Recording id
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: trackId
+          description: Track id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Successful deletion
         '404':
           description: The specified resource was not found.
         default:

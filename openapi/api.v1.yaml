@@ -7,8 +7,7 @@ info:
 
 servers:
   - url: "{protocol}://{host}:{port}{basePath}"
-    description:
-      Dev and Production API (e.g. )
+    description: Dev and Production API (e.g. )
     variables:
       protocol:
         enum:
@@ -34,7 +33,7 @@ servers:
         description: Base path of URL.
 
 paths:
-# ARTISTS
+  # ARTISTS
   /v1/artists:
     get:
       $ref: paths/artists/retrieveArtists.v1.yaml
@@ -48,7 +47,7 @@ paths:
     delete:
       $ref: paths/artists/deleteArtist.v1.yaml
 
-# RECORDINGS
+  # RECORDINGS
   /v1/artists/{artistId}/recordings:
     get:
       $ref: paths/recordings/retrieveRecordings.v1.yaml
@@ -62,10 +61,10 @@ paths:
     delete:
       $ref: paths/recordings/deleteRecording.v1.yaml
 
-# TRACKS
+  # TRACKS
   /v1/recordings/{recordingId}/tracks:
-    get:
-      $ref: paths/tracks/retrieveTracks.v1.yaml
+    # get:
+    #   $ref: paths/tracks/retrieveTracks.v1.yaml
     post:
       $ref: paths/tracks/createTrack.v1.yaml
 
@@ -74,3 +73,5 @@ paths:
       $ref: paths/tracks/retrieveTrack.v1.yaml
     patch:
       $ref: paths/tracks/updateTrack.v1.yaml
+    delete:
+      $ref: paths/tracks/deleteTrack.v1.yaml
