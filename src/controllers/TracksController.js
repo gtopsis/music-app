@@ -14,7 +14,7 @@ const createTrack = async (req, res, next) => {
     let minutes = durationParts.length != 0 ? durationParts.pop() : 0;
     let hours = durationParts.length != 0 ? durationParts.pop() : 0;
 
-    if (durationParts.length != 0) {
+    if (durationParts.length == 0) {
       throw {
         status: 400,
       };
