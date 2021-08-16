@@ -6,8 +6,7 @@ const artists = require("./seeds/artists");
 const testSetupService = require("./testSetupService");
 testSetupService.setUpTestEnv(app);
 
-let artistWithCompleteData = artists.artistWithCompleteData;
-let artistWithInvalidUUID = artists.artistWithInvalidUUID;
+const {artistWithCompleteData, artistUnknown, artistWithInvalidUUID} = artists;
 let newArtistUUID;
 
 describe("POST /v1/artists", () => {
@@ -142,12 +141,20 @@ describe("PATCH /v1/artists/:id", () => {
     expect(receivedArtist.updatedAt).toBeTruthy();
   });
 
-  it("should return 404 when an invalid artistId is passed as param", async () => {
+  it("should return 404 when an unknown artist is passed", async () => {
+    const res = await request(app)
+      .patch(`/v1/artists/${artistUnknown.uuid}`)
+      .send({})
+      .set("Accept", "application/json")
+      .expect(404);
+  });
+
+  it("should return 400 when an invalid uuid is passed as artistId", async () => {
     const res = await request(app)
       .patch(`/v1/artists/${artistWithInvalidUUID.uuid}`)
       .send({})
       .set("Accept", "application/json")
-      .expect(404);
+      .expect(400);
   });
 });
 
@@ -181,11 +188,18 @@ describe("GET /v1/artists/:id", () => {
     expect(receivedArtist.updatedAt).toBeTruthy();
   });
 
-  it("should return 404 when an invalid artistId is passed as param", async () => {
+  it("should return 404 when an unknown artist is passed", async () => {
+    const res = await request(app)
+      .get(`/v1/artists/${artistUnknown.uuid}`)
+      .set("Accept", "application/json")
+      .expect(404);
+  });
+
+  it("should return 400 when an invalid uuid is passed as artistId", async () => {
     const res = await request(app)
       .get(`/v1/artists/${artistWithInvalidUUID.uuid}`)
       .set("Accept", "application/json")
-      .expect(404);
+      .expect(400);
   });
 });
 
@@ -199,7 +213,11 @@ describe("DELETE /v1/artists/:id", () => {
     const res2 = await request(app).get(`/v1/artists/${newArtistUUID}`).set("Accept", "application/json").expect(404);
   });
 
-  it("should return 404 when an invalid artistId is passed as param", async () => {
-    const res = await request(app).delete(`/v1/artists/${artistWithInvalidUUID.uuid}`).expect(404);
+  it("should return 404 when an unknown artist is passed", async () => {
+    const res = await request(app).delete(`/v1/artists/${artistUnknown.uuid}`).expect(404);
+  });
+
+  it("should return 400 when an invalid uuid is passed as artistId", async () => {
+    const res = await request(app).delete(`/v1/artists/${artistWithInvalidUUID.uuid}`).expect(400);
   });
 });
