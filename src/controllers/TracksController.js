@@ -24,7 +24,7 @@ const createTrack = async (req, res, next) => {
     const recordingFound = await RecordingsService.retrieveRecording({uuid: recordingId});
 
     if (!recordingFound) {
-      throw {status: 400};
+      throw {status: 400, message: "Parameter recordingId does not corresponds to an existing recording"};
     }
 
     let query = {
@@ -74,7 +74,7 @@ const retrieveTrack = async (req, res, next) => {
     const recordingFound = await RecordingsService.retrieveRecording({uuid: recordingId});
 
     if (!recordingFound) {
-      throw {status: 400};
+      throw {status: 400, message: "Parameter recordingId does not corresponds to an existing recording"};
     }
 
     const trackFound = await TracksService.retrieveTrack({uuid: trackId});
@@ -98,7 +98,7 @@ const updateTrack = async (req, res, next) => {
 
     const recordingFound = await RecordingsService.retrieveRecording({uuid: recordingId});
     if (!recordingFound) {
-      throw {status: 400};
+      throw {status: 400, message: "Parameter recordingId does not corresponds to an existing recording"};
     }
 
     const trackFound = await TracksService.retrieveTrack({uuid: trackId});
@@ -125,7 +125,7 @@ const updateTrack = async (req, res, next) => {
     let trackUpdated = await TracksService.updateTrack(trackId, trackData);
 
     let durationFound = await DurationsService.retrieveDuration({
-      recordingUUID: recordingFound.uuid,
+      trackUUID: trackUpdated.uuid,
     });
     if (!durationFound) {
       throw {staus: 500};
@@ -177,7 +177,7 @@ const deleteTrack = async (req, res, next) => {
     const recordingFound = await RecordingsService.retrieveRecording({uuid: recordingId});
 
     if (!recordingFound) {
-      throw {status: 400};
+      throw {status: 400, message: "Parameter recordingId does not corresponds to an existing recording"};
     }
 
     const trackFound = await TracksService.retrieveTrack({uuid: trackId});
