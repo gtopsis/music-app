@@ -1,3 +1,4 @@
+const config = require("../config");
 const logger = require("../logger");
 const ServerError = require("../utils/error");
 
@@ -16,7 +17,7 @@ module.exports = (err, req, res, next) => {
     error,
   };
 
-  logger.error(`${error.date} ${error.name}: ${error.status} ${error.message}`);
+  if (config.ENVIRONMENT != "test") logger.error(`${error.date} ${error.name}: ${error.status} ${error.message}`);
 
   res.status(status).json(payload);
 };
