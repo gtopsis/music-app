@@ -20,7 +20,7 @@ const createArtist = async (req, res, next) => {
   try {
     // validate params and body
     const {name, shortName, gender, area} = req.body;
-    const {city, address, country, zipCode} = area;
+    const {city, address, country, zipCode} = area || {};
 
     const artistFound = await models.Artist.findOne({
       where: {
@@ -68,7 +68,7 @@ const updateArtist = async (req, res, next) => {
     // validate params and body
     const uuid = req.params.artistId;
     const {name, shortName, gender, area} = req.body;
-    const {city, address, country, zipCode} = area;
+    const {city, address, country, zipCode} = area || {};
 
     const artistFound = await ArtistsService.retrieveArtist({uuid});
 
@@ -76,14 +76,16 @@ const updateArtist = async (req, res, next) => {
       throw {status: 404};
     }
 
-    // check if new shortName is already occupied by someone else
-    const artistWithSameShortName = await ArtistsService.retrieveArtist({
-      uuid: {[Op.ne]: uuid},
-      shortName,
-    });
+    if (shortName) {
+      // check if new shortName is already occupied by someone else
+      const artistWithSameShortName = await ArtistsService.retrieveArtist({
+        uuid: {[Op.ne]: uuid},
+        shortName,
+      });
 
-    if (artistWithSameShortName) {
-      throw {status: 409};
+      if (artistWithSameShortName) {
+        throw {status: 409};
+      }
     }
 
     let artistData = {name, shortName, gender};
@@ -93,12 +95,11 @@ const updateArtist = async (req, res, next) => {
     let query = {artistUUID: artistFound.uuid};
     let areaFound = await AreasService.retrieveArea(query);
 
-    let areaData = {city, address, country, zipCode};
-
     if (!areaFound) {
       throw {status: 500};
     }
 
+    let areaData = {city, address, country, zipCode};
     let areaUpdated = await AreasService.updateArea(areaFound.uuid, areaData);
 
     res.locals.data = {...artistUpdated.dataValues, area: areaUpdated};
