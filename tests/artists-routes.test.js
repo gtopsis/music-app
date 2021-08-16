@@ -65,10 +65,10 @@ describe("POST /v1/artists", () => {
   });
 
   it("should return 409 if artist's short name is occupied", async () => {
-    const artistUpdateWithOccupiedShortName = artists.artistUpdateWithOccupiedShortName;
+    const artistWithOccupiedShortName = artists.artistWithOccupiedShortName;
     const res = await request(app)
       .post("/v1/artists")
-      .send(artistUpdateWithOccupiedShortName)
+      .send(artistWithOccupiedShortName)
       .set("Accept", "application/json")
       .expect(409);
 
@@ -139,6 +139,46 @@ describe("PATCH /v1/artists/:id", () => {
 
     expect(receivedArtist.createdAt).toBeTruthy();
     expect(receivedArtist.updatedAt).toBeTruthy();
+  });
+
+  it("should return 409 if artist's short name is occupied", async () => {
+    const {artistWithCompleteData2, artistWithOccupiedShortName} = artists;
+
+    const resArtist1 = await request(app)
+      .post("/v1/artists")
+      .send(artistWithCompleteData2)
+      .set("Accept", "application/json")
+      .expect(201);
+
+    let resData = resArtist1.body.data;
+    let receivedArtist = resData;
+
+    let {name, shortName} = artistWithCompleteData2;
+    let {address, country, city, zipCode} = artistWithCompleteData2.area;
+    expect(receivedArtist).toEqual(
+      expect.objectContaining({
+        name: name,
+        shortName: shortName,
+        area: expect.objectContaining({
+          address,
+          country,
+          city,
+          zipCode,
+        }),
+      })
+    );
+
+    expect(receivedArtist.uuid).toBeTruthy();
+
+    expect(receivedArtist.createdAt).toBeTruthy();
+    expect(receivedArtist.updatedAt).toBeTruthy();
+
+    // try to update the artist's short name with an occupied one
+    const res = await request(app)
+      .patch(`/v1/artists/${receivedArtist.uuid}`)
+      .send(artistWithOccupiedShortName)
+      .set("Accept", "application/json")
+      .expect(409);
   });
 
   it("should return 404 when an unknown artist is passed", async () => {

@@ -1,4 +1,4 @@
-const artists = {
+const recordings = {
   artistWithCompleteData: {
     name: "George",
     shortName: "gtop",
@@ -11,19 +11,11 @@ const artists = {
     },
   },
 
-  artistWithCompleteData2: {
-    name: "Maria",
-    shortName: "plemenou",
-    gender: "female",
-    area: {
-      address: "Ikarou 21",
-      city: "Ioannina",
-      country: "Greece",
-      zipCode: "71300",
-    },
+  recordingWithCompleteData: {
+    title: "My personal album",
   },
 
-  artistWithMissingGender: {
+  recordingWithMissingGender: {
     name: "Maria",
     shortName: "mary",
     area: {
@@ -34,7 +26,7 @@ const artists = {
     },
   },
 
-  artistWithMissingName: {
+  recordingWithMissingName: {
     shortName: "John",
     gender: "female",
     area: {
@@ -45,7 +37,7 @@ const artists = {
     },
   },
 
-  artistWithMissingShortName: {
+  recordingWithMissingShortName: {
     name: "Kostas",
     gender: "male",
     area: {
@@ -56,13 +48,13 @@ const artists = {
     },
   },
 
-  artistWithMissingArea: {
+  recordingWithMissingArea: {
     name: "Lampros",
     shortName: "lamp",
     gender: "male",
   },
 
-  artistWithMissingAddress: {
+  recordingWithMissingAddress: {
     name: "Kaity",
     shortName: "kat",
     gender: "female",
@@ -73,7 +65,7 @@ const artists = {
     },
   },
 
-  artistWithMissingCity: {
+  recordingWithMissingCity: {
     name: "Jeremy",
     shortName: "jerem",
     gender: "male",
@@ -84,7 +76,7 @@ const artists = {
     },
   },
 
-  artistWithMissingCountry: {
+  recordingWithMissingCountry: {
     name: "Mano",
     shortName: "man",
     gender: "male",
@@ -95,7 +87,7 @@ const artists = {
     },
   },
 
-  artistWithMissingZipCode: {
+  recordingWithMissingZipCode: {
     name: "Helen",
     shortName: "hell",
     gender: "female",
@@ -106,28 +98,21 @@ const artists = {
     },
   },
 
-  artistUpdateName: {
+  recordingUpdateName: {
     name: "Georgios Topsis",
   },
 
-  artistWithOccupiedShortName: {
-    name: "Hellen",
-    shortName: "gtop",
+  recordingWithOccupiedTitle: {
+    title: "My personal album",
   },
 
-  artistWithEmptyName: {
-    name: "",
-    shortName: "enemi",
+  recordingWithEmptyTitle: {
+    title: "",
   },
 
-  artistWithEmptyShortName: {
-    name: "Jeremy",
-    shortName: "",
-  },
+  recordingUnknown: {uuid: "123e4567-e89b-12d3-a456-426614174001"},
 
-  artistUnknown: {uuid: "123e4567-e89b-12d3-a456-426614174001"},
-
-  artistWithInvalidUUID: {uuid: "123e4567-e89b-12d3-a456"},
+  recordingWithInvalidUUID: {uuid: "123e4567-e89b-12d3-a456"},
 };
 
-module.exports = artists;
+module.exports = recordings;

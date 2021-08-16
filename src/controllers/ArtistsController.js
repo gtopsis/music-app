@@ -22,13 +22,12 @@ const createArtist = async (req, res, next) => {
     const {name, shortName, gender, area} = req.body;
     const {city, address, country, zipCode} = area || {};
 
-    const artistFound = await models.Artist.findOne({
-      where: {
-        shortName,
-      },
+    // check if new shortName is already occupied by someone else
+    const artistWithSameShortName = await ArtistsService.retrieveArtist({
+      shortName,
     });
 
-    if (artistFound) {
+    if (artistWithSameShortName) {
       throw {status: 409};
     }
 
