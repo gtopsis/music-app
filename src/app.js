@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json({limit: config.BODY_SIZE}));
 app.use(morgan("dev"));
-app.use("/static", express.static(path.join(__dirname, "public")));
+app.use("/static", express.static(path.join(__dirname, "../public")));
 
 // OpenAPI - express validator
 app.use(
