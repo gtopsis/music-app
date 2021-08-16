@@ -1,0 +1,31 @@
+summary: Update a Track
+tags:
+  - Tracks
+operationId: updateTrack
+x-eov-operation-handler: TracksController
+
+parameters:
+  - $ref: ../../parameters/path/recordingId.v1.yaml
+  - $ref: ../../parameters/path/trackId.v1.yaml
+
+requestBody:
+  description: Data of Track to be updated
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../requestBodies/trackUpdateBody.v1.yaml"
+
+responses:
+  "200":
+    description: New data of a Track
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/Track.v1.yaml
+
+  "404":
+    description: The specified resource was not found.
+
+  default:
+    $ref: "../../schemas/Error.v1.yaml"

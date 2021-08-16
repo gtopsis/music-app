@@ -1,0 +1,33 @@
+description: Artist data model
+type: object
+properties:
+  name:
+    type: string
+    minLength: 1
+    example: John
+  shortName:
+    type: string
+    minLength: 1
+    example: best-artist
+  gender:
+    type: string
+    example: female
+  area:
+    type: object
+    properties:
+      address:
+        type: string
+        example: Minoos 12
+      zip:
+        type: string
+        example: 71000
+      city:
+        type: string
+        example: Heraklion
+      country:
+        type: string
+        example: Greece
+
+required:
+  - name
+  - shortName

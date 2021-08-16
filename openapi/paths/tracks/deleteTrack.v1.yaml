@@ -1,0 +1,19 @@
+summary: Delete a Track
+tags:
+  - Tracks
+operationId: deleteTrack
+x-eov-operation-handler: TracksController
+
+parameters:
+  - $ref: ../../parameters/path/recordingId.v1.yaml
+  - $ref: ../../parameters/path/trackId.v1.yaml
+
+responses:
+  "204":
+    description: Successful deletion
+
+  "404":
+    description: The specified resource was not found.
+
+  default:
+    $ref: "../../schemas/Error.v1.yaml"

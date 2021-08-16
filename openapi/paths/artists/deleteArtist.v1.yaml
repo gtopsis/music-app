@@ -1,0 +1,18 @@
+summary: Delete an Artist
+tags:
+  - Artists
+operationId: deleteArtist
+x-eov-operation-handler: ArtistsController
+
+parameters:
+  - $ref: ../../parameters/path/artistId.v1.yaml
+
+responses:
+  "204":
+    description: Successful deletion
+
+  "404":
+    description: The specified resource was not found.
+
+  default:
+    $ref: "../../schemas/Error.v1.yaml"

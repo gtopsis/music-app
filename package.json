@@ -1,0 +1,53 @@
+{
+  "name": "fair-music-app",
+  "version": "1.0.0",
+  "description": "A fair music app for artists to manage their recordings and tracks",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "serve": "nodemon --delay 500ms ./src/index.js",
+    "openapi:validate": "swagger-cli validate ./openapi/api.v1.yaml",
+    "openapi:bundle": "swagger-cli bundle ./openapi/api.v1.yaml --outfile openapi.yaml --type yaml --dereference",
+    "openapi:publish": "npm run openapi:validate && npm run openapi:bundle && swagger-cli bundle ./openapi/api.v1.yaml --outfile ./public/openapi.json --type json --dereference",
+    "test:api-unit": "cross-env NODE_ENV=test jest --runInBand",
+    "test:api-unit-watch": "cross-env NODE_ENV=test jest --runInBand --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gtopsis/fair-music-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gtopsis/fair-music-app/issues"
+  },
+  "homepage": "https://github.com/gtopsis/fair-music-app#readme",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^7.32.0",
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2",
+    "supertest": "^6.1.5"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-openapi-validator": "^4.12.15",
+    "helmet": "^4.6.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.1",
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0",
+    "winston": "^3.3.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}

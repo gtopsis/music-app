@@ -1,0 +1,23 @@
+summary: Retrieve a Track
+tags:
+  - Tracks
+operationId: retrieveTrack
+x-eov-operation-handler: TracksController
+
+parameters:
+  - $ref: ../../parameters/path/recordingId.v1.yaml
+  - $ref: ../../parameters/path/trackId.v1.yaml
+
+responses:
+  "200":
+    description: A Track
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/Track.v1.yaml
+
+  "404":
+    description: The specified resource was not found.
+
+  default:
+    $ref: "../../schemas/Error.v1.yaml"

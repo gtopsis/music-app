@@ -1,0 +1,77 @@
+openapi: 3.0.1
+
+info:
+  version: 1.0.0
+  title: Fair Music app API
+  description: Restful API for Fair Music App
+
+servers:
+  - url: "{protocol}://{host}:{port}{basePath}"
+    description: Dev and Production API (e.g. )
+    variables:
+      protocol:
+        enum:
+          - http
+        default: http
+        description: Protocol of the URL.
+      host:
+        enum:
+          - localhost
+        default: localhost
+        description: Host of the URL.
+      port:
+        enum:
+          - ""
+          - "3000"
+        default: "3000"
+        description: Port of the URL
+      basePath:
+        enum:
+          - ""
+          - "/"
+        default: "/"
+        description: Base path of URL.
+
+paths:
+  # ARTISTS
+  /v1/artists:
+    get:
+      $ref: paths/artists/retrieveArtists.v1.yaml
+    post:
+      $ref: paths/artists/createArtist.v1.yaml
+  /v1/artists/{artistId}:
+    get:
+      $ref: paths/artists/retrieveArtist.v1.yaml
+    patch:
+      $ref: paths/artists/updateArtist.v1.yaml
+    delete:
+      $ref: paths/artists/deleteArtist.v1.yaml
+
+  # RECORDINGS
+  /v1/artists/{artistId}/recordings:
+    get:
+      $ref: paths/recordings/retrieveRecordings.v1.yaml
+    post:
+      $ref: paths/recordings/createRecording.v1.yaml
+  /v1/artists/{artistId}/recordings/{recordingId}:
+    get:
+      $ref: paths/recordings/retrieveRecording.v1.yaml
+    patch:
+      $ref: paths/recordings/updateRecording.v1.yaml
+    delete:
+      $ref: paths/recordings/deleteRecording.v1.yaml
+
+  # TRACKS
+  /v1/recordings/{recordingId}/tracks:
+    # get:
+    #   $ref: paths/tracks/retrieveTracks.v1.yaml
+    post:
+      $ref: paths/tracks/createTrack.v1.yaml
+
+  /v1/recordings/{recordingId}/tracks/{trackId}:
+    get:
+      $ref: paths/tracks/retrieveTrack.v1.yaml
+    patch:
+      $ref: paths/tracks/updateTrack.v1.yaml
+    delete:
+      $ref: paths/tracks/deleteTrack.v1.yaml

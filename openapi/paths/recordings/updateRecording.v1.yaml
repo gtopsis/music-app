@@ -1,0 +1,31 @@
+summary: Update a Recording
+tags:
+  - Recordings
+operationId: updateRecording
+x-eov-operation-handler: RecordingsController
+
+parameters:
+  - $ref: ../../parameters/path/artistId.v1.yaml
+  - $ref: ../../parameters/path/recordingId.v1.yaml
+
+requestBody:
+  description: Data of Recording to be updated
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../requestBodies/recordingUpdateBody.v1.yaml"
+
+responses:
+  "200":
+    description: New data of a Recording
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/Recording.v1.yaml
+
+  "404":
+    description: The specified resource was not found.
+
+  default:
+    $ref: "../../schemas/Error.v1.yaml"

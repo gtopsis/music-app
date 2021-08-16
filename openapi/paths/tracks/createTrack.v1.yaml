@@ -1,0 +1,26 @@
+summary: Create a Track
+tags:
+  - Tracks
+operationId: createTrack
+x-eov-operation-handler: TracksController
+
+parameters:
+  - $ref: ../../parameters/path/recordingId.v1.yaml
+
+requestBody:
+  description: Data of new Track
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/Track.v1.yaml"
+
+responses:
+  "201":
+    description: New Recording
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/Track.v1.yaml
+  default:
+    $ref: "../../schemas/Error.v1.yaml"

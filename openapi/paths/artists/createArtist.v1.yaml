@@ -1,0 +1,23 @@
+summary: Create an Artist
+tags:
+  - Artists
+operationId: createArtist
+x-eov-operation-handler: ArtistsController
+
+requestBody:
+  description: Data of new Artist
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../schemas/Artist.v1.yaml"
+
+responses:
+  "201":
+    description: New Artist
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/Artist.v1.yaml
+  default:
+    $ref: "../../schemas/Error.v1.yaml"
