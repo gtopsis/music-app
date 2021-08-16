@@ -56,3 +56,5 @@ Navigate to [http://localhost:3000/static/openapi.json](http://localhost:3000/st
 ### Play with the API using tool **Insomnia**.
 
 In case you want to play with the API, I have uploaded a collection of endpoints in order to import it to Insomnia.
+
+[http://localhost:3000/static/Insomnia_2021-08-16.json](http://localhost:3000/static/Insomnia_2021-08-16.json)
