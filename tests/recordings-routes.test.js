@@ -12,8 +12,8 @@ const {artistWithCompleteData} = artists;
 let newArtistUUID;
 let newRecordingUUID;
 
-describe("POST /v1/artists", () => {
-  it("should return 201 if complete data are passed", async () => {
+describe("Setup env by creatingan artist", () => {
+  it("should create an artist successfully", async () => {
     const res = await request(app)
       .post("/v1/artists")
       .send(artistWithCompleteData)

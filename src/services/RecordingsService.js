@@ -87,7 +87,6 @@ const calcRecordingTotalDuration = async recordingUUID => {
     let finalMinutes = (Math.floor(seconds / 60) + (minutes % 60)) % 60;
     let finalHours = hours + Math.floor((Math.floor(seconds / 60) + (minutes % 60)) / 60);
 
-    console.log(`Recording duration ${finalHours}h, ${finalMinutes}m, ${finalSeconds}s`);
     return {
       hours: finalHours,
       minutes: finalMinutes,

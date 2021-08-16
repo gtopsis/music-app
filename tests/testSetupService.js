@@ -33,4 +33,13 @@ module.exports = {
       // await dropAllCollections();
     });
   },
+
+  parseDuration(durationStr) {
+    let durationParts = durationStr.split(":");
+    const seconds = durationParts.length > 0 ? parseInt(durationParts.pop()) : 0;
+    const minutes = durationParts.length > 0 ? parseInt(durationParts.pop()) : 0;
+    const hours = durationParts.length > 0 ? parseInt(durationParts.pop()) : 0;
+
+    return {seconds, hours, minutes};
+  },
 };

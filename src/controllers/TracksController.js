@@ -105,12 +105,14 @@ const updateTrack = async (req, res, next) => {
     if (!trackFound) {
       throw {status: 404};
     }
-
     if (title != undefined && title != null) {
       // check if NEW title OR position is already occupied by a DIFFERENT trsck of the SAME recording
+      let query = [{title}];
+      if (position) query.push({position});
+
       const trackWithSameTitle = await TracksService.retrieveTrack({
         uuid: {[Op.ne]: trackId},
-        [Op.or]: [{title}, {position}],
+        [Op.or]: query,
         recordingUUID: recordingId,
       });
 
