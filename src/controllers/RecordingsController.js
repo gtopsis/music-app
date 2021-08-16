@@ -12,7 +12,7 @@ const retrieveRecordings = async (req, res, next) => {
     const artistFound = await ArtistsService.retrieveArtist({uuid: artistId});
 
     if (!artistFound) {
-      throw {status: 400};
+      throw {status: 400, message: "Parameter artistId does not corresponds to an existing artist"};
     }
 
     let recordings = await RecordingsService.retrieveRecordings();
@@ -33,7 +33,7 @@ const createRecording = async (req, res, next) => {
     const artistFound = await ArtistsService.retrieveArtist({uuid: artistId});
 
     if (!artistFound) {
-      throw {status: 400};
+      throw {status: 400, message: "Parameter artistId does not corresponds to an existing artist"};
     }
 
     // check if the artist has an album with the same title
@@ -66,7 +66,7 @@ const retrieveRecording = async (req, res, next) => {
     const artistFound = await ArtistsService.retrieveArtist({uuid: artistId});
 
     if (!artistFound) {
-      throw {status: 400};
+      throw {status: 400, message: "Parameter artistId does not corresponds to an existing artist"};
     }
 
     const recordingFound = await RecordingsService.retrieveRecording({uuid: recordingId});
@@ -91,7 +91,7 @@ const updateRecording = async (req, res, next) => {
     const artistFound = await ArtistsService.retrieveArtist({uuid: artistId});
 
     if (!artistFound) {
-      throw {status: 400};
+      throw {status: 400, message: "Parameter artistId does not corresponds to an existing artist"};
     }
 
     let query = {uuid: recordingId};
@@ -136,7 +136,7 @@ const deleteRecording = async (req, res, next) => {
     const artistFound = await ArtistsService.retrieveArtist({uuid: artistId});
 
     if (!artistFound) {
-      throw {status: 400};
+      throw {status: 400, message: "Parameter artistId does not corresponds to an existing artist"};
     }
 
     const recordingFound = await RecordingsService.retrieveRecording({uuid: recordingId});
