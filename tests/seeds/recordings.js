@@ -98,8 +98,8 @@ const recordings = {
     },
   },
 
-  recordingUpdateName: {
-    name: "Georgios Topsis",
+  recordingUpdateTitle: {
+    title: "My second favorite album",
   },
 
   recordingWithOccupiedTitle: {
