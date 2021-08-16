@@ -10,7 +10,7 @@ You will only need Node.js and a node global package, npm, installed in your env
 
 Start with cloning this repo on your local machine and install all required node packages:
 
-Clone repository Using your ssh credentials:
+Clone repository using your ssh credentials:
 ```sh
     $ git clone git@github.com:gtopsis/fair-music-app.git
 ```
