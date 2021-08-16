@@ -28,6 +28,9 @@ Before running the app, you have to create the following two databases. You will
 ```sh
     $ npm run serve
 ```
+
+Open your browser at `localhost:3000`.
+
 ### Running the tests
 
 ```sh
