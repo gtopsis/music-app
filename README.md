@@ -23,16 +23,20 @@ Before running the app, you have to create the following two databases. You will
 
 ## Running the project
 
-### Serving the app
+### Starting the app
 
 ```sh
-    $ npm run serve
+    $ npm run start
 ```
 
-Open your browser at `localhost:3000`.
+API endpoints will be available at [localhost:3000](localhost:3000) (i.e http://localhost:3000/v1/artists).
 
 ### Running the tests
 
 ```sh
     $ npm run test:api-unit
 ```
+
+### Retrieve json file of API v1 specification
+
+Navigate to [http://localhost:3000/static/openapi.json](http://localhost:3000/static/openapi.json) in your browser.
