@@ -13,10 +13,10 @@ class ServerError extends Error {
   constructor(error, ...params) {
     super(...params);
 
-    this.name = "ServerError";
     // Custom debugging information
-    this.message = error.message || this.getMessage(this.code);
+    this.name = "ServerError";
     this.status = error.status || 500;
+    this.message = error.message || this.getMessage(this.status);
     this.date = new Date();
   }
 
