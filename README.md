@@ -1,5 +1,5 @@
-# fair-music-app
-An awesome and revolutionary app to assist artists manage their recordings and tracks. Note! Term fair in the repo's name is used for marketing purposes.
+# music-app
+An awesome and revolutionary app to assist artists manage their recordings and tracks.
 
 ---
 
@@ -12,19 +12,19 @@ Start with cloning this repo on your local machine and install all required node
 
 Clone repository using your ssh credentials:
 ```sh
-    $ git clone git@github.com:gtopsis/fair-music-app.git
+ $ git clone git@github.com:gtopsis/fair-music-app.git
 ```
 
 or:
 
 ```sh
-    $ git clone https://github.com/gtopsis/fair-music-app.git
+ $ git clone https://github.com/gtopsis/fair-music-app.git
 ```
 
 Install all npm packages:
 ```sh
-    $ cd fair-music-app
-    $ npm install
+ $ cd fair-music-app
+ $ npm install
 ```
 ## Configure databases
 
@@ -38,7 +38,7 @@ Before running the app, you have to create the following two **postgreSQL** data
 ### Starting the app
 
 ```sh
-    $ npm run start
+ $ npm run start
 ```
 
 API endpoints will be available at [localhost:3000](localhost:3000) (i.e http://localhost:3000/v1/artists).
@@ -46,7 +46,7 @@ API endpoints will be available at [localhost:3000](localhost:3000) (i.e http://
 ### Running the tests
 
 ```sh
-    $ npm run test:api-unit
+ $ npm run test:api-unit
 ```
 
 ### Retrieve json file of API v1 specification
