@@ -12,18 +12,18 @@ Start with cloning this repo on your local machine and install all required node
 
 Clone repository using your ssh credentials:
 ```sh
- $ git clone git@github.com:gtopsis/fair-music-app.git
+ $ git clone git@github.com:gtopsis/music-app.git
 ```
 
 or:
 
 ```sh
- $ git clone https://github.com/gtopsis/fair-music-app.git
+ $ git clone https://github.com/gtopsis/music-app.git
 ```
 
 Install all npm packages:
 ```sh
- $ cd fair-music-app
+ $ cd music-app
  $ npm install
 ```
 ## Configure databases
