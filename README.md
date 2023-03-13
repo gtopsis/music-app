@@ -1,24 +1,19 @@
 # music-app
-An awesome and revolutionary app to assist artists manage their recordings and tracks.
+An awesome app to assist artists manage their recordings and tracks.
+It is written in TypeScript and it is an Express server utilizing a PostreSQL DB.
 
 ---
 
 ## Requirements
 
 You will only need Node.js and a node global package, npm, installed in your environement.
-## Install
+## Set up
 
 Start with cloning this repo on your local machine and install all required node packages:
 
 Clone repository using your ssh credentials:
 ```sh
  $ git clone git@github.com:gtopsis/music-app.git
-```
-
-or:
-
-```sh
- $ git clone https://github.com/gtopsis/music-app.git
 ```
 
 Install all npm packages:
@@ -41,7 +36,7 @@ Before running the app, you have to create the following two **postgreSQL** data
  $ npm run start
 ```
 
-API endpoints will be available at [localhost:3000](localhost:3000) (i.e http://localhost:3000/v1/artists).
+API will be available at [localhost:3000](localhost:3000) (i.e http://localhost:3000/v1/artists).
 
 ### Running the tests
 
