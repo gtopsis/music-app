@@ -35,10 +35,9 @@ Before running the app, you have to create the following two **postgreSQL** data
 ### Starting the app
 
 ```sh
+ $ npm i
  $ npm run start
 ```
-
-API is documented in file `openapi.yaml`.
 
 ### Running the tests
 
