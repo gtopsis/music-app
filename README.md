@@ -1,6 +1,7 @@
 # music-app
-An awesome app to assist artists manage their recordings and tracks.
-It is written in TypeScript and it is an Express server utilizing a PostreSQL DB.
+This project represents the backend side of a music app in which albums, artists and tracks are associated properly.
+I had the opportunity to design and implement a Postgress DB, design and document(OpenAPI 3) a RESTful API as well as to utilize JavaScript in order to build an Express server.
+
 
 ---
 
