@@ -2,6 +2,11 @@
 This project represents the backend side of a music app in which albums, artists and tracks are associated properly.
 I had the opportunity to design and implement a Postgress DB, design and document(OpenAPI 3) a RESTful API as well as to utilize JavaScript in order to build an Express server.
 
+<p float="left">
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*1LTco1HO2xJUyA3aUmX7DQ.jpeg" alt="Tech stack of the project" width="45%" />
+  <img src="/img2.png" width="45%" /> 
+</p>
+
 
 ---
 
@@ -12,10 +17,6 @@ You will only need Node.js and a node global package, npm, installed in your env
 
 Start with cloning this repo on your local machine and install all required node packages:
 
-Clone repository using your ssh credentials:
-```sh
- $ git clone git@github.com:gtopsis/music-app.git
-```
 
 Install all npm packages:
 ```sh
