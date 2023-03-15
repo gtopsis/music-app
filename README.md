@@ -4,7 +4,7 @@ I had the opportunity to design and implement a Postgress DB, design and documen
 
 <p float="left">
   <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*1LTco1HO2xJUyA3aUmX7DQ.jpeg" alt="Tech stack of the project" width="45%" />
-  <img src="/API.png" width="45%" /> 
+  <img src="/screenshots/API.png" width="45%" /> 
 </p>
 
 
