@@ -38,7 +38,7 @@ Before running the app, you have to create the following two **postgreSQL** data
  $ npm run start
 ```
 
-API will be available at [localhost:3000](localhost:3000) (i.e http://localhost:3000/v1/artists).
+API is documented in file `openapi.yaml`.
 
 ### Running the tests
 
